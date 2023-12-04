@@ -49,7 +49,7 @@ const ingredients = [];
             fetch(url, {
                     method: "POST",
                     headers: {
-                        "Authorization": `Bearer ${"YOUR_API_KEY"}`,
+                        "Authorization": `Bearer ${"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"}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
