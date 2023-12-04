@@ -32,7 +32,7 @@ const ingredients = [];
             const numberOfPeople = document.querySelector("input[name='numberOfPeople']").value;
 
             const prompt =
-                `Tu dois générer 5 recettes saine et écologique.
+                `Tu dois générer une recette saine et écologique.
                 La recette commencera par "Voici une recette saine et écologique".
                 Elle inclueras les ingrédients suivants: ${ingredients.join(', ')}.
                 Elle inclueras un temps de préparation d'environ ${time} minutes.
@@ -49,7 +49,7 @@ const ingredients = [];
             fetch(url, {
                     method: "POST",
                     headers: {
-                        "Authorization": `Bearer ${"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"}`,
+                        "Authorization": `Bearer ${"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"}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
