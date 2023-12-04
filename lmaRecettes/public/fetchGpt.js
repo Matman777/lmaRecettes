@@ -6,10 +6,12 @@ const ingredients = [];
 
 
             if (ingredientName) {
-                ingredients.push(ingredientName);
+                
+                if (!ingredients.includes(ingredientName)) {
+                    ingredients.push(ingredientName);
+                }
             }
-
-
+        
             document.querySelector('#recipe').innerHTML = `${ingredients.join(', ')}`;
         }
 
