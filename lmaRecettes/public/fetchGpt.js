@@ -1,3 +1,7 @@
+require('dotenv').config();
+const apiKey = process.env.API_KEY;
+
+
 // const ingredients = [];
 // const dotsElement = document.querySelector('#dots');
 // const loadingContainer = document.querySelector('#loading-container');
@@ -283,7 +287,7 @@ async function getRecipe() {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${"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"}`,
+                "Authorization": `Bearer ${process.env.API_KEY}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
