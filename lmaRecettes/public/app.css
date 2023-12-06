@@ -1,0 +1,27 @@
+@keyframes dotAnimation {
+    0% {
+        content: ". ";
+    }
+    33% {
+        content: ".. ";
+    }
+    66% {
+        content: "... ";
+    }
+    100% {
+        content: ". ";
+    }
+}
+
+.dots-animation::after {
+    display: inline-block;
+    content: ". "; /* Affiche au moins un point pour garantir la visibilité */
+    animation: dotAnimation 1s infinite;
+}
+
+#loading-container {
+    display: none;
+}
+
+
+
