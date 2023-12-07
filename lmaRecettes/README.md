@@ -3,6 +3,7 @@ pour utiliser la partie admin, installer breeze:
 -   S'assurer d'avoir fait la migration de la table users fournie par Laravel
 -   Penser à sauvegarder nos routes déjà construites dans "web.php" pour les remettre après, car Breeze va les écraser
 -   Exécuter la commande "composer require laravel/breeze"
+-   Choisir "blade"
 -   Une fois installé, on l'implémente dans notre application en faisant la commande "php artisan breeze:install"
 -   Pour terminer, "npm install" puis "npm run dev" afin d'accéder au formulaire
 
@@ -10,3 +11,11 @@ pour utiliser la partie admin, installer breeze:
     -- pseudo: admin
     -- mot de passe: adminadmin
     -- email: admin@admin.com
+
+save routes web.php:
+
+Route::get('/', function () {
+return view('welcome');
+});
+
+Route::get('/', [IngredientController::class, 'index']);

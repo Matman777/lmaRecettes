@@ -1,4 +1,4 @@
-// import.meta.env.API_KEY
+
 
 const ingredients = [];
 const dotsElement = document.querySelector('#dots');
@@ -141,7 +141,7 @@ async function getRecipe() {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${"clé_api"}`,
+                "Authorization": `Bearer ${"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"}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
