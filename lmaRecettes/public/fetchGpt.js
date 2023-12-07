@@ -1,39 +1,19 @@
-require('dotenv').config();
-const apiKey = process.env.API_KEY;
+// require('dotenv').config();
+// const apiKey = process.env.API_KEY;
+
+
 
 
 // const ingredients = [];
 // const dotsElement = document.querySelector('#dots');
 // const loadingContainer = document.querySelector('#loading-container');
 
+
 // function updateRecipeContent(content) {
-//     console.log("Raw Content:", content);
-
 //     const recipeElement = document.querySelector('#recipe');
-
-//     const titleMatches = content.match(/Voici une recette saine et écologique : ([\s\S]*?)Ingrédients:/);
-//     const recipeTitle = titleMatches ? titleMatches[1] : "Titre non trouvé";
-
-//     const ingredientsList = content.match(/Ingrédients:([\s\S]*?)Préparation:/);
-//     const ingredients = ingredientsList ? ingredientsList[1].split('\n').map(ingredient => ingredient.trim()) : [];
-
-//     const preparationList = content.match(/Préparation:([\s\S]*)/);
-//     const preparationSteps = preparationList ? preparationList[1].split(/\d+\./).map(step => step.trim()).filter(Boolean) : [];
-
-
-//     console.log("Title:", titleMatches);
-//     console.log("Ingredients:", ingredientsList);
-//     console.log("Preparation:", preparationList);
-    
-//     const htmlSections = `
-//         <p>${recipeTitle}</p>
-//         ${ingredients.length > 0 ? `<p>Ingrédients :</p><ul>${ingredients.map((ingredient, index) => `<li key=${index}>${ingredient}</li>`).join('')}</ul>` : ''}
-//         <p>Préparation :</p>
-//         ${preparationSteps.length > 0 ? `<ol>${preparationSteps.map((step, index) => `<li key=${index}>${step}</li>`).join('')}</ol>` : ''}
-//     `;
-
-//     recipeElement.innerHTML = htmlSections;
+//     recipeElement.textContent = content;
 // }
+
 
 // function clearIngredients() {
 //     // Décoche toutes les cases à cocher
@@ -93,7 +73,11 @@ const apiKey = process.env.API_KEY;
 //         La recette commencera par "Voici une recette saine et écologique".
 //         Elle inclura les ingrédients suivants: ${ingredients.join(', ')}.
 //         Elle inclura un temps de préparation d'environ ${time} minutes.
-//         Elle doit être prévue pour ${numberOfPeople} personnes.`;
+//         Elle doit être prévue pour ${numberOfPeople} personnes.
+// 	Tu présenteras la recette sous le format suivant:
+// 	Le titre de la recette, puis tu sautes une ligne.
+// 	Les ingrédients sous forme de liste numérotée, puis tu sautes une ligne.
+// 	La réparation, sous forme de liste numérotée.`;
 
 //     const url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
 //     const temperature = 0.7;
@@ -108,7 +92,7 @@ const apiKey = process.env.API_KEY;
 //         const response = await fetch(url, {
 //             method: "POST",
 //             headers: {
-//                 "Authorization": `Bearer ${"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"}`,
+//                 "Authorization": `Bearer ${"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"}`,
 //                 "Content-Type": "application/json"
 //             },
 //             body: JSON.stringify({
@@ -124,11 +108,15 @@ const apiKey = process.env.API_KEY;
 //         }
 
 //         const data = await response.json();
+//         console.log('Réponse du serveur:', data);
+        
 
 //         if (!data.choices || !data.choices[0]) {
 //             console.error("Invalid response from OpenAI API");
 //             return;
 //         }
+
+      
 
 //         // Formater et mettre à jour la div avec la recette
 //         updateRecipeContent(data.choices[0].text);
@@ -150,69 +138,73 @@ const apiKey = process.env.API_KEY;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const ingredients = [];
 const dotsElement = document.querySelector('#dots');
 const loadingContainer = document.querySelector('#loading-container');
 
 
-function updateRecipeContent(content) {
-    const recipeElement = document.querySelector('#recipe');
-    recipeElement.textContent = content;
+// function updateRecipeContent(content) {
+//     const recipeElement = document.querySelector('#recipe');
+//     recipeElement.textContent = content;
+// }
+
+
+
+function updateRecipeContent(data) {
+    console.log(data);
+    const recipe = data.choices[0].text;
+    console.log('Full Recipe:', recipe);
+
+    // Séparer la recette en sections (titre, ingrédients, préparation)
+    const sections = recipe.split('\n\n');
+    console.log('Sections:', sections);
+
+    if (sections.length >= 4) {
+        const title = sections[1].trim();
+        const ingredients = sections[2].split('\n').map(ingredient => ingredient.trim());
+        const preparationSection = sections.slice(3).join('\n\n'); // Combinez les sections restantes pour la préparation
+
+        const preparationSteps = preparationSection.split('\n').map(step => step.trim());
+
+        // Supprimer le numéro ajouté automatiquement
+        const formattedPreparationSteps = preparationSteps.map(step => {
+            const match = step.match(/^\d+\.\s(.*)/); // Vérifier s'il y a un numéro au début de l'étape
+            return match ? match[1] : step;
+        });
+
+        const formattedRecipe = `
+    <h2>${title}</h2>
+    <div class="ingredients">
+        <h3>Ingrédients :</h3>
+        <ul>
+            ${ingredients.slice(1).map(ingredient => `<li>${ingredient}</li>`).join('')}
+        </ul>
+    </div>
+    <div class="preparation">
+        <h3>Préparation :</h3>
+        <ol>
+            ${preparationSteps.slice(1).map(step => `<li>${step.replace(/^\d+\.\s*/, '')}</li>`).join('')}
+        </ol>
+    </div>
+`;
+
+document.querySelector('#recipe').innerHTML = formattedRecipe;
+
+
+
+
+    } else {
+        console.error("Invalid recipe format");
+        document.querySelector('#recipe').innerHTML = "Une erreur s'est produite lors du formatage de la recette.";
+    }
 }
 
 
-// function updateRecipeContent(content) {
-//   const recipeElement = document.querySelector('#recipe');
 
-//   // Split the content into lines
-//   const lines = content.split('\n');
 
-//   // Initialize variables to store title, ingredients, and preparation steps
-//   let title = '';
-//   let ingredients = [];
-//   let preparationSteps = [];
 
-//   // Process each line to extract title, ingredients, and preparation steps
-//   for (const line of lines) {
-//     if (line.startsWith('Voici une recette saine et écologique :')) {
-//       title = line.substring(36).trim(); // Extract the title after the prefix
-//     } else if (line.startsWith('Ingrédients:')) {
-//       ingredients = lines.slice(lines.indexOf(line) + 1, lines.indexOf('Préparation:')).map(ingredient => ingredient.trim()); // Extract ingredients
-//     } else if (line.startsWith('Préparation:')) {
-//       preparationSteps = lines.slice(lines.indexOf(line) + 1).map(step => step.trim()); // Extract preparation steps
-//     }
-//   }
 
-//   // Format the title, ingredients, and preparation steps as HTML elements
-//   const formattedTitle = `<h2>${title}</h2>`;
-//   const formattedIngredients = ingredients.length > 0 ? `<h3>Ingrédients</h3><ul>${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}</ul>` : '';
-//   const formattedPreparationSteps = preparationSteps.length > 0 ? `<h3>Préparation</h3><ol>${preparationSteps.map(step => `<li>${step}</li>`).join('')}</ol>` : '';
 
-//   // Append the title, ingredients, and preparation steps to the recipeElement's innerHTML
-//   recipeElement.innerHTML += formattedTitle;
-//   recipeElement.innerHTML += formattedIngredients;
-//   recipeElement.innerHTML += formattedPreparationSteps;
-// }
-
-  
-  
 
 function clearIngredients() {
     // Décoche toutes les cases à cocher
@@ -272,7 +264,11 @@ async function getRecipe() {
         La recette commencera par "Voici une recette saine et écologique".
         Elle inclura les ingrédients suivants: ${ingredients.join(', ')}.
         Elle inclura un temps de préparation d'environ ${time} minutes.
-        Elle doit être prévue pour ${numberOfPeople} personnes.`;
+        Elle doit être prévue pour ${numberOfPeople} personnes.
+        Tu présenteras la recette sous le format suivant:
+        Le Titre de la recette, puis tu sautes une ligne.
+        Les Ingrédients sous forme de liste à puces, puis tu sautes une ligne.
+        La Préparation, sous forme de liste numérotée.`;
 
     const url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
     const temperature = 0.7;
@@ -287,7 +283,7 @@ async function getRecipe() {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${process.env.API_KEY}`,
+                "Authorization": `Bearer ${"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"}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -304,7 +300,7 @@ async function getRecipe() {
 
         const data = await response.json();
         console.log('Réponse du serveur:', data);
-        console.log(prompt);
+        
 
         if (!data.choices || !data.choices[0]) {
             console.error("Invalid response from OpenAI API");
@@ -314,7 +310,7 @@ async function getRecipe() {
       
 
         // Formater et mettre à jour la div avec la recette
-        updateRecipeContent(data.choices[0].text);
+        updateRecipeContent(data);
 
     } catch (error) {
         console.error("Error:", error);
