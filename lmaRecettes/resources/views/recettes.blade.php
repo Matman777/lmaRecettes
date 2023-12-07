@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./app.css">
-    @vite(['resources/js/fetchGpt.js'])
+    {{-- @vite(['resources/js/fetchGpt.js']) --}}
 
     <title>LMA Recettes</title>
 </head>
@@ -46,7 +46,7 @@
 
         <button type="button" onclick="getRecipe()">Générer ma recette</button>
 
-        {{-- <script src="fetchGpt.js"></script> --}}
+        <script src="fetchGpt.js"></script>
     </div>
 </body>
 
