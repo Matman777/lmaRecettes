@@ -12,10 +12,4 @@ pour utiliser la partie admin, installer breeze:
     -- mot de passe: adminadmin
     -- email: admin@admin.com
 
-save routes web.php:
-
-Route::get('/', function () {
-return view('welcome');
-});
-
-Route::get('/', [IngredientController::class, 'index']);
+---

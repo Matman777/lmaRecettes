@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./app.css">
-    {{-- @vite(['resources/js/fetchGpt.js']) --}}
 
     <title>LMA Recettes</title>
 </head>
@@ -44,9 +43,57 @@
         <button type="button" onclick="clearIngredients()">Vider la liste d'ingrédients et/ou effacer la
             recette</button>
 
+        <!-- Ajoutez ceci à l'endroit où vous souhaitez afficher le champ de saisie -->
+        <input type="text" id="newIngredient" placeholder="Nouvel ingrédient">
+        <button type="button" onclick="addCustomIngredient()">Ajouter</button>
+
+
         <button type="button" onclick="getRecipe()">Générer ma recette</button>
 
+        <div id="cookie-modal">
+            <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site. Nous stcokerons les heures de
+                connexion, les ingrédients sélectionnés et les adresse IP. Acceptez-vous l'utilisation
+                des cookies?</p>
+            <button onclick="acceptCookies()">Oui</button>
+            <button onclick="rejectCookies()">Non</button>
+        </div>
+
+        <script>
+            // Vérifier si le cookie "acceptedCookies" est défini
+            if (!getCookie("acceptedCookies")) {
+                // Afficher la fenêtre modale si le cookie n'est pas défini
+                document.getElementById("cookie-modal").style.display = "block";
+            }
+
+            function acceptCookies() {
+                // Définir le cookie "acceptedCookies" avec une date d'expiration (par exemple, 365 jours)
+                document.cookie = "acceptedCookies=true; expires=" + new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000)
+                    .toUTCString();
+
+                // Cacher la fenêtre modale
+                document.getElementById("cookie-modal").style.display = "none";
+            }
+
+            function rejectCookies() {
+                // Cacher la fenêtre modale sans définir le cookie
+                document.getElementById("cookie-modal").style.display = "none";
+            }
+
+            // Fonction pour récupérer la valeur d'un cookie par son nom
+            function getCookie(name) {
+                const cookies = document.cookie.split(";").map(cookie => cookie.trim());
+                for (const cookie of cookies) {
+                    const [cookieName, cookieValue] = cookie.split("=");
+                    if (cookieName === name) {
+                        return cookieValue;
+                    }
+                }
+                return null;
+            }
+        </script>
         <script src="fetchGpt.js"></script>
+
+
     </div>
 </body>
 

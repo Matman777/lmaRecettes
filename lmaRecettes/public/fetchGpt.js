@@ -1,5 +1,3 @@
-
-
 const ingredients = [];
 const dotsElement = document.querySelector('#dots');
 const loadingContainer = document.querySelector('#loading-container');
@@ -9,6 +7,7 @@ const loadingContainer = document.querySelector('#loading-container');
 //     const recipeElement = document.querySelector('#recipe');
 //     recipeElement.textContent = content;
 // }
+
 
 
 
@@ -54,8 +53,6 @@ function updateRecipeContent(data) {
 document.querySelector('#recipe').innerHTML = formattedRecipe;
 
 
-
-
     } else {
         console.error("Invalid recipe format");
         document.querySelector('#recipe').innerHTML = "Une erreur s'est produite lors du formatage de la recette.";
@@ -81,21 +78,75 @@ function addIngredient(ingredient) {
     const checkbox = ingredient.querySelector('input[name="ingredients"]');
     const ingredientName = checkbox.value;
 
-    if (checkbox.checked) {
-        if (!ingredients.includes(ingredientName)) {
-            ingredients.push(ingredientName);
-        }
-    } else {
+    if (checkbox.checked && !ingredients.includes(ingredientName)) {
+        ingredients.push(ingredientName);
+    } else if (!checkbox.checked) {
         const index = ingredients.indexOf(ingredientName);
         if (index !== -1) {
             ingredients.splice(index, 1);
         }
     }
 
-    document.querySelector('#recipe').innerHTML = `${ingredients.join(', ')}`;
+    // Mettez à jour la liste des ingrédients uniquement si aucune recette n'a été générée
+    const recipeContent = document.querySelector('#recipe').innerHTML;
+    if (!recipeContent.includes('<h2>')) {
+        document.querySelector('#recipe').innerHTML = `${ingredients.join(', ')}`;
+    }
 }
 
+// Ajoutez ceci à la fin de votre fichier JavaScript
+function addCustomIngredient() {
+    const newIngredientInput = document.querySelector('#newIngredient');
+    const newIngredient = newIngredientInput.value.trim();
+
+    // Mettez à jour la liste des ingrédients
+    updateIngredientsList(newIngredient);
+
+    if (newIngredient !== '') {
+        // Mettez à jour l'affichage
+        updateRecipeDisplay();
+
+        // Effacez le champ de saisie
+        newIngredientInput.value = '';
+    }
+}
+
+function updateRecipeDisplay() {
+    // Mettez à jour la liste des ingrédients uniquement si aucune recette n'a été générée
+    const recipeContent = document.querySelector('#recipe').innerHTML;
+    if (!recipeContent.includes('<h2>')) {
+        document.querySelector('#recipe').innerHTML = `${ingredients.join(', ')}`;
+    }
+}
+
+function updateIngredientsList(newIngredient) {
+    if (newIngredient !== '' && !ingredients.includes(newIngredient)) {
+        // Ajoutez le nouvel ingrédient à la liste des ingrédients
+        ingredients.push(newIngredient);
+    }
+}
+
+
+function updateIngredients() {
+    // Effacez la liste d'ingrédients précédente
+    ingredients.length = 0;
+
+    // Ajoutez les ingrédients actuellement cochés à la liste
+    const checkedIngredients = document.querySelectorAll('input[name="ingredients"]:checked');
+    for (const ingredient of checkedIngredients) {
+        const ingredientName = ingredient.value;
+        if (ingredientName) {
+            ingredients.push(ingredientName);
+        }
+    }
+}
+
+
+
+
 async function getRecipe() {
+
+    updateIngredients();
     // Afficher le message d'attente sans les points de suspension
     document.querySelector('#recipe').innerHTML = "";
     document.querySelector('#loading-message').textContent = "Vos ingrédients se coupent en quatre pour vous satisfaire";
@@ -118,14 +169,14 @@ async function getRecipe() {
     const numberOfPeople = document.querySelector("input[name='numberOfPeople']").value;
 
     const prompt =
-        `Tu dois générer une recette saine et écologique.
-        La recette commencera par "Voici une recette saine et écologique".
+        `Tu dois générer une recette.
+        La recette commencera par "Voici votre recette", avec le nom de la recette juste en dessous.
         Elle inclura les ingrédients suivants: ${ingredients.join(', ')}.
         Elle inclura un temps de préparation d'environ ${time} minutes.
         Elle doit être prévue pour ${numberOfPeople} personnes.
         Tu présenteras la recette sous le format suivant:
         Le Titre de la recette, puis tu sautes une ligne.
-        Les Ingrédients sous forme de liste à puces, puis tu sautes une ligne.
+        Les Ingrédients sous forme de liste, puis tu sautes une ligne.
         La Préparation, sous forme de liste numérotée.`;
 
     const url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
@@ -141,7 +192,7 @@ async function getRecipe() {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${"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"}`,
+                "Authorization": `Bearer ${""}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -179,4 +230,6 @@ async function getRecipe() {
         loadingContainer.style.display = 'none';
         dotsElement.style.display = 'none';
     }
+
+    
 }
