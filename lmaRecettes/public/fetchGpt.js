@@ -3,12 +3,11 @@ const dotsElement = document.querySelector('#dots');
 const loadingContainer = document.querySelector('#loading-container');
 
 
+
 // function updateRecipeContent(content) {
 //     const recipeElement = document.querySelector('#recipe');
 //     recipeElement.textContent = content;
 // }
-
-
 
 
 function updateRecipeContent(data) {
@@ -94,8 +93,20 @@ function addIngredient(ingredient) {
     }
 }
 
+function updateRecipeDisplay() {
+    console.log('updateRecipeDisplay called');
+    console.log('Current ingredients:', ingredients);
+    // Mettez à jour la liste des ingrédients uniquement si aucune recette n'a été générée
+    const recipeContent = document.querySelector('#recipe').innerHTML;
+    if (!recipeContent.includes('<h2>')) {
+        document.querySelector('#recipe').innerHTML = `${ingredients.join(', ')}`;
+    }
+}
+
+
 // Ajoutez ceci à la fin de votre fichier JavaScript
 function addCustomIngredient() {
+    console.log('addCustomIngredient called');
     const newIngredientInput = document.querySelector('#newIngredient');
     const newIngredient = newIngredientInput.value.trim();
 
@@ -111,15 +122,10 @@ function addCustomIngredient() {
     }
 }
 
-function updateRecipeDisplay() {
-    // Mettez à jour la liste des ingrédients uniquement si aucune recette n'a été générée
-    const recipeContent = document.querySelector('#recipe').innerHTML;
-    if (!recipeContent.includes('<h2>')) {
-        document.querySelector('#recipe').innerHTML = `${ingredients.join(', ')}`;
-    }
-}
+
 
 function updateIngredientsList(newIngredient) {
+    console.log('updateIngredientsList called with:', newIngredient);
     if (newIngredient !== '' && !ingredients.includes(newIngredient)) {
         // Ajoutez le nouvel ingrédient à la liste des ingrédients
         ingredients.push(newIngredient);
@@ -129,7 +135,7 @@ function updateIngredientsList(newIngredient) {
 
 function updateIngredients() {
     // Effacez la liste d'ingrédients précédente
-    ingredients.length = 0;
+    // ingredients.length = 0;
 
     // Ajoutez les ingrédients actuellement cochés à la liste
     const checkedIngredients = document.querySelectorAll('input[name="ingredients"]:checked');
@@ -140,6 +146,7 @@ function updateIngredients() {
         }
     }
 }
+
 
 
 
@@ -192,7 +199,7 @@ async function getRecipe() {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${""}`,
+                "Authorization": `Bearer ${"key"}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -231,5 +238,7 @@ async function getRecipe() {
         dotsElement.style.display = 'none';
     }
 
+
+    
     
 }

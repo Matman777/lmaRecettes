@@ -51,7 +51,7 @@
         <button type="button" onclick="getRecipe()">Générer ma recette</button>
 
         <div id="cookie-modal">
-            <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site. Nous stcokerons les heures de
+            <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site. Nous stockerons les heures de
                 connexion, les ingrédients sélectionnés et les adresse IP. Acceptez-vous l'utilisation
                 des cookies?</p>
             <button onclick="acceptCookies()">Oui</button>
