@@ -149,9 +149,9 @@ function updateIngredients() {
 
 
 
-
-
 async function getRecipe() {
+
+    ingredients.length = 0;
 
     updateIngredients();
     // Afficher le message d'attente sans les points de suspension
@@ -237,8 +237,4 @@ async function getRecipe() {
         loadingContainer.style.display = 'none';
         dotsElement.style.display = 'none';
     }
-
-
-    
-    
 }
