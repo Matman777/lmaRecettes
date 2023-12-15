@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\InfoController;
 use App\Http\Controllers\IngredientController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IngredientController::class, 'index']);
+
+//Route::get('/', [IngredientController::class, 'index']);
+
+//Route::get('/', [InfoController::class, 'Graphe_ingredient']);
+
+//Route::get('/', [InfoController::class, 'graphe_user']);
+
+//Route::get('/', [InfoController::class, 'graphe3']);
+
+Route::get('/', [InfoController::class, 'graphe_state_journaliere']);

@@ -198,4 +198,19 @@ return [
 
     'same_site' => 'lax',
 
+    /////////////////////////////////////////COOKIES////////////////////
+
+    'cookies' => [
+        //The key defines the key in the translations and is used to access the Cookie specific information
+        'session' => [
+            //Optional: you can set forced to make it impossible for the user to not accept this cookie.
+            'forced' => 'true',
+            //Optional: The description defines the key in the translations
+            //'description' => 'key in translation File'
+        ],
+        'xsrf-token' => [
+            'forced' => 'true',
+        ],
+    ],
+
 ];

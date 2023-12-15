@@ -2,14 +2,17 @@ const ingredients = [];
 
         function addIngredient(ingredient) {
 
+            
             const ingredientName = ingredient.querySelector('input[name="ingredients"]').value;
 
-
+            enregistrerStats('AI', ingredientName);
             if (ingredientName) {
-                ingredients.push(ingredientName);
+                
+                if (!ingredients.includes(ingredientName)) {
+                    ingredients.push(ingredientName);
+                }
             }
-
-
+        
             document.querySelector('#recipe').innerHTML = `${ingredients.join(', ')}`;
         }
 
@@ -49,7 +52,7 @@ const ingredients = [];
             fetch(url, {
                     method: "POST",
                     headers: {
-                        "Authorization": `Bearer ${"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"}`,
+                        //"Authorization": `Bearer ${"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"}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
