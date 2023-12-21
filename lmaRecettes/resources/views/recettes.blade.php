@@ -11,6 +11,61 @@
 </head>
 
 <body>
+    <div class="ingredients-list">
+        <h2>viande</h2>
+        <ul>
+            @foreach ($ingredientsList1 as $ingredient)
+                <li class="ingredient-{{ $ingredient->name }} 
+                           {{ $ingredient->is_selected ? 'selected' : 'not-selected' }}
+                           {{ $ingredient->is_available ? 'available' : 'not-available' }}
+                           {{ $ingredient->is_vegan ? 'vegan' : 'non-vegan' }}"
+                    onclick="addIngredient(this)">
+                    {{ $ingredient->name }}
+                    <input type="checkbox" name="ingredients" value="{{ $ingredient->name }}" {{ $ingredient->is_selected ? 'checked' : '' }}>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+    
+    <div class="ingredients-list">
+        <h2>ingrédients de base</h2>
+        <ul>
+            @foreach ($ingredientsingrédients de base as $ingredient)
+                <li class="ingredient-{{ $ingredient->name }} 
+                           {{ $ingredient->is_selected ? 'selected' : 'not-selected' }}
+                           {{ $ingredient->is_available ? 'available' : 'not-available' }}
+                           {{ $ingredient->is_vegan ? 'vegan' : 'non-vegan' }}"
+                    onclick="addIngredient(this)">
+                    {{ $ingredient->name }}
+                    <input type="checkbox" name="ingredients" value="{{ $ingredient->name }}" {{ $ingredient->is_selected ? 'checked' : '' }}>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
+    <div class="ingredients-list">
+        <h2>légumes</h2>
+        <ul>
+            @foreach ($ingredientslégumes as $ingredient)
+                <button class="custom-button ingredient-{{ $ingredient->name }} 
+                    {{ $ingredient->is_selected ? 'selected' : 'not-selected' }}
+                    {{ $ingredient->is_available ? 'available' : 'not-available' }}
+                    {{ $ingredient->is_vegan ? 'vegan' : 'non-vegan' }}" onclick="changeColor(this)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTngZN91y7arGW0qn95j_tV5pMiFeb-GJ-dMQ&usqp=CAU" alt="tomates">
+                    <span>tomates</span>
+                </button>
+                <li class="ingredient-{{ $ingredient->name }} 
+                           {{ $ingredient->is_selected ? 'selected' : 'not-selected' }}
+                           {{ $ingredient->is_available ? 'available' : 'not-available' }}
+                           {{ $ingredient->is_vegan ? 'vegan' : 'non-vegan' }}"
+                    onclick="addIngredient(this)">
+                    {{ $ingredient->name }}
+                    <input type="checkbox" name="ingredients" value="{{ $ingredient->name }}" {{ $ingredient->is_selected ? 'checked' : '' }}>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+    
     <div class="container">
         <h1>Happy Recipie</h1>
 
@@ -25,14 +80,14 @@
         </div>
 
         <label for="time">Temps de préparation :</label>
-        <select name="time">
+        <select name="time" id="time">
             <option value="0-30">0-30 minutes</option>
             <option value="30-60">30-60 minutes</option>
             <option value="60+">60 minutes et plus</option>
         </select>
 
         <label for="numberOfPeople">Nombre de personnes :</label>
-        <input type="number" name="numberOfPeople" value="4" style="width:30px">
+        <input type="number" id="numberOfPeople" value="4" style="width:30px">
 
         <button type="button" onclick="getRecipe()">Générer ma recette</button>
 

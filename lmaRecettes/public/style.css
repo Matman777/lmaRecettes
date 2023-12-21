@@ -1,0 +1,189 @@
+body {
+    background-color: rgb(158, 241, 158);
+    margin: 0 auto;
+    height: 10vh; 
+  }
+      
+header nav {
+    height: 50px;
+    background-color: rgb(226, 94, 94);
+    padding: 0px 10%;
+    width: 80%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  header nav a {
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  header nav a:hover {
+    color: blue;
+  }
+
+       
+  article h2 {
+    font-size: 1em;
+    text-align: center;
+    
+   
+  }
+  
+  article h1 {
+    text-align: center;
+    color: rgb(231, 66, 94);
+  }
+  
+.category-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.category-list{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  align-items: center;
+  
+}
+.category-button{
+  padding: 10px;
+  margin: 30px;
+  border: none;
+  border-radius: 10px; /* Ajoutez cette ligne pour définir les bords arrondis */
+  cursor: pointer;
+  font-size: em;
+  background-color: rgb(226, 94, 94);
+  width: 200px;
+}
+
+.custom-button {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  
+  padding: 5px;
+  background-color: white;
+  cursor: pointer;
+  width: 150px; 
+  border-radius: 10px; 
+  margin: 5px;
+
+  
+  
+}
+.custom-button.clicked {
+/* Définit la couleur de fond du bouton après le clic */
+background-color: rgb(149, 149, 234);
+}
+
+.custom-button img {
+  width: 30px; /* Ajustez la largeur de l'image selon vos besoins */
+  height: 30px; /* Ajustez la hauteur de l'image selon vos besoins */
+  margin-right: 5px;
+}
+
+.custom-button span {
+  font-size: 1em; /* Ajustez la taille de la police selon vos besoins */
+}
+
+nav a:hover {
+  color: blue;
+} 
+
+.special-category {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+category-button {
+  width: 100px;
+  height: 100px;
+  /* Ajoutez les styles pour les boutons selon vos besoins */
+  margin-right: 10px; /* Ajoutez une marge entre les boutons si nécessaire */
+}
+.counter-box special-category{
+  display: flex;
+  align-items: center;
+}
+
+.counter {
+  margin: 0 10px;
+  font-size: 18px;
+}
+
+.btn-minus,
+.btn-plus {
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+ /* Ajoutez des styles CSS supplémentaires selon vos besoins */
+ .text-box {
+  width: 200px;
+  height: 50px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none; /* Empêche le redimensionnement de la zone de texte */
+}
+
+.genere-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 10%;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1em;
+  background-color: rgb(226, 94, 94);
+  width: 200px;
+  text-align: center;
+  margin: 0 auto; /* Ajout de cette ligne pour centrer horizontalement */
+}
+
+
+footer {
+  background-color: rgb(226, 94, 94);
+  padding: 20px;
+  text-align: center;
+  height: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+/* Ajoutez ces styles à votre fichier CSS */
+.social-icons {
+  display: flex;
+  justify-content: flex-end; /* Ajustez selon vos préférences de mise en page */
+  align-items: center; /* Centre les icônes verticalement */
+  height: 100%; /* Ajuste la hauteur pour les centrer */
+}
+
+.social-icons a {
+  text-decoration: none;
+  margin-left: 15px; /* Ajoute de l'espace entre les icônes */
+}
+
+.social-icons img {
+  width: 30px; /* Ajustez selon vos préférences de taille */
+  height: 30px;
+  transform: scale(1.2); /* Effet de zoom au survol */
+}
+
+.social-icons img:hover {
+  transform: scale(1.2); /* Effet de zoom au survol */
+}
