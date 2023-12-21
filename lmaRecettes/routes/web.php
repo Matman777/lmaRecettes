@@ -21,6 +21,8 @@ Route::get('/', function () {
 
 Route::get('/', [IngredientController::class, 'index']);
 
+Route::get('/final', [IngredientController::class, 'final']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

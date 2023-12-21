@@ -1,15 +1,45 @@
+// Déclaration des variables globales
 const ingredients = [];
-const dotsElement = document.querySelector('#dots');
 const loadingContainer = document.querySelector('#loading-container');
+const dotsElement = document.querySelector('#dots');
 
+// Fonction pour changer la couleur des boutons au clic et gérer les ingrédients
+function changeColor(clickedButton) {
+    clickedButton.classList.toggle('clicked');
+    const ingredientName = clickedButton.textContent.trim();
 
+    if (clickedButton.classList.contains('clicked')) {
+        addIngredient(ingredientName);
+    } else {
+        removeIngredient(ingredientName);
+    }
+}
 
-// function updateRecipeContent(content) {
-//     const recipeElement = document.querySelector('#recipe');
-//     recipeElement.textContent = content;
-// }
+// Ajouter un ingrédient à la liste
+function addIngredient(ingredientName) {
+    if (!ingredients.includes(ingredientName)) {
+        ingredients.push(ingredientName);
+        console.log(ingredients);
+    }
+    updateRecipeDisplay();
+}
 
+// Retirer un ingrédient de la liste
+function removeIngredient(ingredientName) {
+    const index = ingredients.indexOf(ingredientName);
+    if (index !== -1) {
+        ingredients.splice(index, 1);
+    }
+    updateRecipeDisplay();
+}
 
+// Mettre à jour l'affichage de la recette
+function updateRecipeDisplay() {
+    const recipeElement = document.querySelector('#recipe');
+    recipeElement.textContent = ingredients.join(', ');
+}
+
+// Traitement de la réponse de l'API
 function updateRecipeContent(data) {
     console.log(data);
     const recipe = data.choices[0].text;
@@ -56,123 +86,20 @@ document.querySelector('#recipe').innerHTML = formattedRecipe;
         console.error("Invalid recipe format");
         document.querySelector('#recipe').innerHTML = "Une erreur s'est produite lors du formatage de la recette.";
     }
+    
 }
-
-
-
-
-
-
-function clearIngredients() {
-    // Décoche toutes les cases à cocher
-    const checkboxes = document.querySelectorAll('input[name="ingredients"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-    });
-
-    // Vide la liste d'ingrédients et met à jour l'affichage
-    ingredients.length = 0;
-    document.querySelector('#recipe').innerHTML = "";
-    document.querySelector('#dots').style.display = 'none'; // Cacher les points de suspension
-}
-
-function addIngredient(ingredient) {
-    const checkbox = ingredient.querySelector('input[name="ingredients"]');
-    const ingredientName = checkbox.value;
-
-    if (checkbox.checked && !ingredients.includes(ingredientName)) {
-        ingredients.push(ingredientName);
-    } else if (!checkbox.checked) {
-        const index = ingredients.indexOf(ingredientName);
-        if (index !== -1) {
-            ingredients.splice(index, 1);
-        }
-    }
-
-    // Mettez à jour la liste des ingrédients uniquement si aucune recette n'a été générée
-    const recipeContent = document.querySelector('#recipe').innerHTML;
-    if (!recipeContent.includes('<h2>')) {
-        document.querySelector('#recipe').innerHTML = `${ingredients.join(', ')}`;
-    }
-}
-
-function updateRecipeDisplay() {
-    console.log('updateRecipeDisplay called');
-    console.log('Current ingredients:', ingredients);
-    // Mettez à jour la liste des ingrédients uniquement si aucune recette n'a été générée
-    const recipeContent = document.querySelector('#recipe').innerHTML;
-    if (!recipeContent.includes('<h2>')) {
-        document.querySelector('#recipe').innerHTML = `${ingredients.join(', ')}`;
-    }
-}
-
-
-// Ajoutez ceci à la fin de votre fichier JavaScript
-function addCustomIngredient() {
-    console.log('addCustomIngredient called');
-    const newIngredientInput = document.querySelector('#newIngredient');
-    const newIngredient = newIngredientInput.value.trim();
-
-    console.log('Nouvel ingrédient ajouté:', newIngredient);
-
-    // Mettez à jour la liste des ingrédients
-    updateIngredientsList(newIngredient);
-
-    if (newIngredient !== '') {
-        // Mettez à jour l'affichage
-        updateRecipeDisplay();
-
-        // Effacez le champ de saisie
-        newIngredientInput.value = '';
-    }
-}
-
-
-
-function updateIngredientsList(newIngredient) {
-    console.log('updateIngredientsList called with:', newIngredient);
-    if (newIngredient !== '' && !ingredients.includes(newIngredient)) {
-        // Ajoutez le nouvel ingrédient à la liste des ingrédients
-        ingredients.push(newIngredient);
-    }
-}
-
-
-
-function updateIngredients() {
-    // Séparez les ingrédients de l'input des ingrédients cochés
-    const inputIngredients = ingredients.filter(ingredient => !document.querySelector(`input[name="ingredients"][value="${ingredient}"]`));
-
-    // Réinitialisez la liste des ingrédients avec uniquement les ingrédients de l'input
-    ingredients.length = 0;
-    ingredients.push(...inputIngredients);
-
-    // Ajoutez les ingrédients actuellement cochés à la liste
-    const checkedIngredients = document.querySelectorAll('input[name="ingredients"]:checked');
-    for (const ingredient of checkedIngredients) {
-        const ingredientName = ingredient.value;
-        if (ingredientName && !ingredients.includes(ingredientName)) {
-            ingredients.push(ingredientName);
-        }
-    }
-}
-
-
-
-
-
+// Obtenir une recette de l'API OpenAI
 async function getRecipe() {
 
     // ingredients.length = 0;
 
-    updateIngredients();
+    //updateIngredients();
     // Afficher le message d'attente sans les points de suspension
     document.querySelector('#recipe').innerHTML = "";
     document.querySelector('#loading-message').textContent = "Vos ingrédients se coupent en quatre pour vous satisfaire";
 
-
-    const checkedIngredients = document.querySelectorAll('input[name="ingredients"]:checked');
-    if (checkedIngredients.length === 0) {
+    // Vérifier si des ingrédients ont été sélectionnés
+    if (ingredients.length === 0) {
         // Afficher un message demandant de sélectionner des ingrédients
         document.querySelector('#recipe').innerHTML = "Veuillez sélectionner des ingrédients.";
         return;
@@ -204,7 +131,10 @@ async function getRecipe() {
         Tu présenteras la recette sous le format suivant:
         Le Titre de la recette, puis tu sautes une ligne.
         Les Ingrédients sous forme de liste, puis tu sautes une ligne.
-        La Préparation, sous forme de liste numérotée.`;
+        La Préparation, sous forme de liste numérotée.
+        Si l'un des ingrédients renseignés n'est en réalité pas un produit alimentaire 
+        (par exemple: de la mort aux rats, de l'eau de javel ou encore un chat), 
+        n'en prends pas compte et fais la recette en omettant tout élément illicite`;
 
     const url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
     const temperature = 0.7;
@@ -261,3 +191,111 @@ async function getRecipe() {
         dotsElement.style.display = 'none';
     }
 }
+
+// Initialisation au chargement du document
+document.addEventListener('DOMContentLoaded', function () {
+    // Ajout des écouteurs d'événements aux boutons d'ingrédients
+    document.querySelectorAll('.custom-button').forEach(button => {
+        button.addEventListener('click', () => changeColor(button));
+    });
+
+    const recipeButton = document.querySelector('.genere-button');
+    if (recipeButton) {
+        recipeButton.addEventListener('click', getRecipe);
+    }
+
+    // Ajouter un écouteur d'événements au bouton "Ajouter"
+    const addButton = document.querySelector('.ajouter-button');
+    if (addButton) {
+        addButton.addEventListener('click', function() {
+            const newIngredientInput = document.querySelector('.text-box');
+            const newIngredient = newIngredientInput.value.trim();
+            if (newIngredient !== '') {
+                addIngredient(newIngredient); // Utilisez votre fonction existante pour ajouter un ingrédient
+                newIngredientInput.value = ''; // Réinitialisez l'input
+            }
+        });
+    }
+    
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function changeColor(clickedButton) {
+//     clickedButton.classList.toggle('clicked');
+// }
+// document.addEventListener('DOMContentLoaded', function () {
+//     const counterElement = document.querySelector('.counter');
+//     const btnMinus = document.querySelector('.btn-minus');
+//     const btnPlus = document.querySelector('.btn-plus');
+  
+//     let counterValue = 0;
+  
+//     btnMinus.addEventListener('click', function () {
+//       counterValue = Math.max(0, counterValue - 1);
+//       counterElement.textContent = counterValue;
+//     });
+  
+//     btnPlus.addEventListener('click', function () {
+//       counterValue += 1;
+//       counterElement.textContent = counterValue;
+//     });
+//   });
+  
+  
+// document.querySelectorAll('.social-icons a').forEach(link => {
+//   link.addEventListener('click', () => {
+//     gtag('event', 'click', {
+//       'event_category': 'social',
+//       'event_label': link.href
+//     });
+//   });
+// });
+
+
+// var radioButtons = document.querySelectorAll('input[name="choix"]');
+
+
+// radioButtons.forEach(function(button) {
+//     button.addEventListener('change', function() {
+        
+//         genere-button .forEach(function(otherButton) {
+//             if (otherButton !== button) {
+//                 otherButton.checked = false;
+//             }
+//         });
+//     });
+// });
