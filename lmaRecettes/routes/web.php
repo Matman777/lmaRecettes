@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/', [IngredientController::class, 'index']);
 
-//Route::get('/', [InfoController::class, 'Graphe_ingredient']);
+Route::get('/', [InfoController::class, 'Graphe_ingredient']);
 
 //Route::get('/', [InfoController::class, 'graphe_user']);
 
 //Route::get('/', [InfoController::class, 'graphe3']);
 
-Route::get('/', [InfoController::class, 'graphe_state_journaliere']);
+//Route::get('/', [InfoController::class, 'graphe_state_journaliere']);
+
+//Route::get('/', [InfoController::class, 'all_graphes']);
