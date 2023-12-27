@@ -72,4 +72,37 @@ class InfoController extends Controller
         return view('graphe3', ['infos' => $infos]);
     }
 
+    public function afficheGraphes()
+{
+    // Récupérer les données pour le graphique d'ingrédients
+    $ingredientInfos = Info::select('param2', DB::raw('COUNT(id) as totalActions'))
+        ->groupBy('param2')
+        ->orderByDesc('totalActions')
+        ->get();
+
+    // Récupérer les données pour le graphique quotidien
+    $dailyInfos = Info::selectRaw("DATE(heure_connexion) as date_jour, COUNT(id) as totalActions")
+        ->groupBy('date_jour') // jour
+        ->orderBy('date_jour') // ranger par date
+        ->get();
+
+    // Récupérer les données pour le graphique horaire
+    $hourlyInfos = Info::select(DB::raw('DATE_FORMAT(heure_connexion, "%Y-%m-%d %H") as date_heure_connexion'), DB::raw('COUNT(id) as totalActions'))
+        ->groupBy(DB::raw('DATE_FORMAT(heure_connexion, "%Y-%m-%d %H")'), DB::raw('HOUR(heure_connexion)'))
+        ->get();
+
+    $userAgentData = Info::select('user_agent', DB::raw('COUNT(DISTINCT idUser) as totalActions'))
+        ->groupBy('user_agent')
+        ->orderByDesc('totalActions')
+        ->get();
+
+    return view('all_graphes')->with([
+        'ingredientInfos' => $ingredientInfos,
+        'dailyInfos' => $dailyInfos,
+        'hourlyInfos' => $hourlyInfos,
+        'userAgentData' => $userAgentData
+    ]);
+}
+
+
 }
