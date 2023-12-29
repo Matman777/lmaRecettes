@@ -48,17 +48,16 @@ class InfoController extends Controller
         return view('graphe_user', ['infos' => $infos]);
     }
 
-    
+
 
     public function graphe_state_journaliere()
     {
-        //$infos = Info::select(DB::raw('DATE(heure_connexion) as date_jour') ,DB::raw('COUNT(id) as totalActions')) // date du jour et le nombre cliques par jour
         $infos = Info::selectRaw("DATE(heure_connexion) as date_jour, COUNT(id) as totalActions")
             ->groupBy('date_jour') // jour
             ->orderBy('date_jour') // ranger par date
             ->get();
 
-        return view('graphe_state_journaliere', ['infos' => $infos]);      
+        return view('graphe_state_journaliere', ['infos' => $infos]);
     }
 
 
@@ -73,36 +72,34 @@ class InfoController extends Controller
     }
 
     public function afficheGraphes()
-{
-    // Récupérer les données pour le graphique d'ingrédients
-    $ingredientInfos = Info::select('param2', DB::raw('COUNT(id) as totalActions'))
-        ->groupBy('param2')
-        ->orderByDesc('totalActions')
-        ->get();
+    {
+        // Récupérer les données pour le graphique d'ingrédients
+        $ingredientInfos = Info::select('param2', DB::raw('COUNT(id) as totalActions'))
+            ->groupBy('param2')
+            ->orderByDesc('totalActions')
+            ->get();
 
-    // Récupérer les données pour le graphique quotidien
-    $dailyInfos = Info::selectRaw("DATE(heure_connexion) as date_jour, COUNT(id) as totalActions")
-        ->groupBy('date_jour') // jour
-        ->orderBy('date_jour') // ranger par date
-        ->get();
+        // Récupérer les données pour le graphique quotidien
+        $dailyInfos = Info::selectRaw("DATE(heure_connexion) as date_jour, COUNT(id) as totalActions")
+            ->groupBy('date_jour') // jour
+            ->orderBy('date_jour') // ranger par date
+            ->get();
 
-    // Récupérer les données pour le graphique horaire
-    $hourlyInfos = Info::select(DB::raw('DATE_FORMAT(heure_connexion, "%Y-%m-%d %H") as date_heure_connexion'), DB::raw('COUNT(id) as totalActions'))
-        ->groupBy(DB::raw('DATE_FORMAT(heure_connexion, "%Y-%m-%d %H")'), DB::raw('HOUR(heure_connexion)'))
-        ->get();
+        // Récupérer les données pour le graphique horaire
+        $hourlyInfos = Info::select(DB::raw('DATE_FORMAT(heure_connexion, "%Y-%m-%d %H") as date_heure_connexion'), DB::raw('COUNT(id) as totalActions'))
+            ->groupBy(DB::raw('DATE_FORMAT(heure_connexion, "%Y-%m-%d %H")'), DB::raw('HOUR(heure_connexion)'))
+            ->get();
 
-    $userAgentData = Info::select('user_agent', DB::raw('COUNT(DISTINCT idUser) as totalActions'))
-        ->groupBy('user_agent')
-        ->orderByDesc('totalActions')
-        ->get();
+        $userAgentData = Info::select('user_agent', DB::raw('COUNT(DISTINCT idUser) as totalActions'))
+            ->groupBy('user_agent')
+            ->orderByDesc('totalActions')
+            ->get();
 
-    return view('all_graphes')->with([
-        'ingredientInfos' => $ingredientInfos,
-        'dailyInfos' => $dailyInfos,
-        'hourlyInfos' => $hourlyInfos,
-        'userAgentData' => $userAgentData
-    ]);
-}
-
-
+        return view('all_graphes')->with([
+            'ingredientInfos' => $ingredientInfos,
+            'dailyInfos' => $dailyInfos,
+            'hourlyInfos' => $hourlyInfos,
+            'userAgentData' => $userAgentData
+        ]);
+    }
 }
