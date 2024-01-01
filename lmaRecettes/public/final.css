@@ -27,6 +27,8 @@ body {
     margin-left: 10px;
     margin-right: 10px;
 }
+
+
       
 header nav {
     height: 50px;
@@ -112,6 +114,17 @@ header nav {
     width: 100%; /* Ajustez cette largeur si nécessaire */
   }
   
+
+
+  #selected-ingredients {
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgb(205, 205, 241); /* Choisissez une couleur de fond appropriée */
+    border-radius: 5px;
+}
+
   
 
 .custom-button.clicked {

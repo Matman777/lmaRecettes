@@ -16,9 +16,20 @@ function changeColor(clickedButton) {
 }
 
 // Ajouter un ingrédient à la liste
+// function addIngredient(ingredientName) {
+//     if (!ingredients.includes(ingredientName)) {
+//         ingredients.push(ingredientName);
+//         console.log(ingredients);
+//     }
+//     updateRecipeDisplay();
+// }
+
 function addIngredient(ingredientName) {
-    if (!ingredients.includes(ingredientName)) {
-        ingredients.push(ingredientName);
+    // Convertir le premier caractère en majuscule et le reste en minuscules
+    const formattedIngredientName = ingredientName.charAt(0).toUpperCase() + ingredientName.slice(1).toLowerCase();
+
+    if (!ingredients.includes(formattedIngredientName)) {
+        ingredients.push(formattedIngredientName);
         console.log(ingredients);
     }
     updateRecipeDisplay();
@@ -26,31 +37,60 @@ function addIngredient(ingredientName) {
 
 
 
+
 // Retirer un ingrédient de la liste
+// function removeIngredient(ingredientName) {
+//     const index = ingredients.indexOf(ingredientName);
+//     if (index !== -1) {
+//         ingredients.splice(index, 1);
+//     }
+//     updateRecipeDisplay();
+// }
+
+// function removeIngredient(ingredientName) {
+//     const index = ingredients.indexOf(ingredientName);
+//     if (index !== -1) {
+//         ingredients.splice(index, 1);
+//         updateRecipeDisplay(); // Mettre à jour la liste des ingrédients
+//     }
+// }
+
 function removeIngredient(ingredientName) {
     const index = ingredients.indexOf(ingredientName);
     if (index !== -1) {
         ingredients.splice(index, 1);
+        updateRecipeDisplay(); // Mettre à jour la liste des ingrédients
+
+        // Trouver le bouton correspondant et retirer la classe 'clicked'
+        document.querySelectorAll('.custom-button').forEach(button => {
+            if (button.textContent.trim() === ingredientName) {
+                button.classList.remove('clicked');
+            }
+        });
     }
-    updateRecipeDisplay();
 }
 
-// Mettre à jour l'affichage de la recette
+
+
+
+
+
 // function updateRecipeDisplay() {
 //     const recipeElement = document.querySelector('#recipe');
-//     recipeElement.textContent = ingredients.join(', ');
+//     let ingredientsHtml = ingredients.map(ingredient =>
+//         `<span class="ingredient-item">${ingredient} <button class="delete-button" onclick="removeIngredient('${ingredient}')">X</button></span>`
+//     ).join(', ');
+//     recipeElement.innerHTML = ingredientsHtml;
 // }
 
 
 function updateRecipeDisplay() {
-    const recipeElement = document.querySelector('#recipe');
+    const selectedIngredientsElement = document.querySelector('#selected-ingredients');
     let ingredientsHtml = ingredients.map(ingredient =>
         `<span class="ingredient-item">${ingredient} <button class="delete-button" onclick="removeIngredient('${ingredient}')">X</button></span>`
     ).join(', ');
-    recipeElement.innerHTML = ingredientsHtml;
+    selectedIngredientsElement.innerHTML = ingredientsHtml;
 }
-
-
 
 
 

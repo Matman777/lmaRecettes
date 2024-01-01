@@ -93,6 +93,10 @@
     <h4>
         <button class="genere-button"><strong>génère-moi une recette</strong></button>
     </h4>
+
+    <div id="selected-ingredients"></div>
+
+
     <div id="recipe"></div>
 
     <div id="loading-screen">
