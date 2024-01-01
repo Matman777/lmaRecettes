@@ -14,7 +14,7 @@
 </head>
 <header>
     <nav>
-        <a href="/">Acceuil</a>
+        <a href="/">Accueil</a>
         <a href="/recetteFR.html">Contact</a>
     </nav>
 </header>

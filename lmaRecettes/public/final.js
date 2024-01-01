@@ -93,6 +93,12 @@ function updateRecipeDisplay() {
         `<span class="ingredient-item">${ingredient} <button class="delete-button" onclick="removeIngredient('${ingredient}')">X</button></span>`
     ).join(' ');
     selectedIngredientsElement.innerHTML = ingredientsHtml;
+
+    if (ingredients.length > 0) {
+        document.querySelector('#selected-ingredients').style.display = 'block';
+    } else {
+        document.querySelector('#selected-ingredients').style.display = 'none';
+    }
 }
 
 
@@ -147,7 +153,8 @@ document.querySelector('#recipe').innerHTML = formattedRecipe;
         document.querySelector('#recipe').innerHTML = "Une erreur s'est produite lors du formatage de la recette.";
     }
 
-    
+    // Afficher la div de la recette
+    document.querySelector('#recipe').style.display = 'block';
     
 }
 
