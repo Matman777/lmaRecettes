@@ -3,6 +3,9 @@ const ingredients = [];
 const loadingContainer = document.querySelector('#loading-container');
 const dotsElement = document.querySelector('#dots');
 
+
+
+
 // Fonction pour changer la couleur des boutons au clic et gérer les ingrédients
 function changeColor(clickedButton) {
     clickedButton.classList.toggle('clicked');
@@ -88,7 +91,7 @@ function updateRecipeDisplay() {
     const selectedIngredientsElement = document.querySelector('#selected-ingredients');
     let ingredientsHtml = ingredients.map(ingredient =>
         `<span class="ingredient-item">${ingredient} <button class="delete-button" onclick="removeIngredient('${ingredient}')">X</button></span>`
-    ).join(', ');
+    ).join(' ');
     selectedIngredientsElement.innerHTML = ingredientsHtml;
 }
 
@@ -97,7 +100,7 @@ function updateRecipeDisplay() {
 
 
 // Traitement de la réponse de l'API
-function updateRecipeContent(data) {
+async function updateRecipeContent(data) {
     console.log(data);
     const recipe = data.choices[0].text;
     console.log('Full Recipe:', recipe);
@@ -143,14 +146,16 @@ document.querySelector('#recipe').innerHTML = formattedRecipe;
         console.error("Invalid recipe format");
         document.querySelector('#recipe').innerHTML = "Une erreur s'est produite lors du formatage de la recette.";
     }
+
+    
     
 }
+
+
+
 // Obtenir une recette de l'API OpenAI
 async function getRecipe() {
 
-    // ingredients.length = 0;
-
-    //updateIngredients();
     // Afficher le message d'attente sans les points de suspension
     document.querySelector('#recipe').innerHTML = "";
     document.querySelector('#loading-message').textContent = "Vos ingrédients se coupent en quatre pour vous satisfaire";
@@ -162,12 +167,6 @@ async function getRecipe() {
         return;
     }
 
-    // for (const ingredient of checkedIngredients) {
-    //     const ingredientName = ingredient.value;
-    //     if (ingredientName) {
-    //         ingredients.push(ingredientName);
-    //     }
-    // }
 
     // Ajouter l'ingrédient de l'input si présent
     const newIngredientInput = document.querySelector('#newIngredient');
@@ -200,7 +199,7 @@ async function getRecipe() {
 
     console.log("Envoi de l'invite à l'API:", prompt);
 
-
+    
     try {
         // Afficher le message d'attente avec les points de suspension
         loadingContainer.style.display = 'flex';
@@ -250,6 +249,9 @@ async function getRecipe() {
         document.getElementById('loading-screen').style.display = 'none';
     }
 }
+
+
+
 
 // Initialisation au chargement du document
 document.addEventListener('DOMContentLoaded', function () {

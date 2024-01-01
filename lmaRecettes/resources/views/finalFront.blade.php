@@ -91,7 +91,7 @@
 
 <div class="article">
     <h4>
-        <button class="genere-button"><strong>génère-moi une recette</strong></button>
+        <button class="genere-button"><strong>Génère-moi une recette</strong></button>
     </h4>
 
     <div id="selected-ingredients"></div>
