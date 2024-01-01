@@ -24,6 +24,8 @@ function addIngredient(ingredientName) {
     updateRecipeDisplay();
 }
 
+
+
 // Retirer un ingrédient de la liste
 function removeIngredient(ingredientName) {
     const index = ingredients.indexOf(ingredientName);
@@ -34,10 +36,25 @@ function removeIngredient(ingredientName) {
 }
 
 // Mettre à jour l'affichage de la recette
+// function updateRecipeDisplay() {
+//     const recipeElement = document.querySelector('#recipe');
+//     recipeElement.textContent = ingredients.join(', ');
+// }
+
+
 function updateRecipeDisplay() {
     const recipeElement = document.querySelector('#recipe');
-    recipeElement.textContent = ingredients.join(', ');
+    let ingredientsHtml = ingredients.map(ingredient =>
+        `<span class="ingredient-item">${ingredient} <button class="delete-button" onclick="removeIngredient('${ingredient}')">X</button></span>`
+    ).join(', ');
+    recipeElement.innerHTML = ingredientsHtml;
 }
+
+
+
+
+
+
 
 // Traitement de la réponse de l'API
 function updateRecipeContent(data) {
@@ -219,38 +236,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

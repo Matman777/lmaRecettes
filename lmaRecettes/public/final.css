@@ -1,5 +1,5 @@
 body {
-    background-image: url('./fond_cuisine.jpg');
+    background-image: url('./fond_cuisine.avif');
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0 auto;
@@ -7,14 +7,16 @@ body {
 }
 
 #recipe {
-    background-color: white;
+    background-color: rgb(205, 205, 241);
     padding: 20px; /* Ajoutez un peu de padding pour une meilleure lisibilité */
     border-radius: 10px; /* Optionnel : pour les coins arrondis */
+    margin-left: 10px;
+    margin-right: 10px;
 }
       
 header nav {
     height: 50px;
-    background-color: rgb(226, 94, 94);
+    background-color: black;
     padding: 0px 10%;
     width: 80%;
     margin-bottom: 10px;
@@ -40,6 +42,9 @@ header nav {
   article h2 {
     font-size: 1em;
     text-align: center;
+    color: white;
+    border: 1px solid black;
+    background-color: black;
     
    
   }
@@ -66,10 +71,10 @@ header nav {
   margin: 30px;
   border: none;
   border-radius: 10px; /* Ajoutez cette ligne pour définir les bords arrondis */
-  cursor: pointer;
   font-size: em;
-  background-color: rgb(226, 94, 94);
+  background-color: rgb(231, 219, 197);
   width: 200px;
+  margin-left: 500px;
 }
 
 .custom-button {
@@ -117,10 +122,13 @@ category-button {
   height: 100px;
   /* Ajoutez les styles pour les boutons selon vos besoins */
   margin-right: 10px; /* Ajoutez une marge entre les boutons si nécessaire */
+  
+  
 }
 .counter-box special-category{
   display: flex;
   align-items: center;
+  
 }
 
 .counter {
@@ -137,8 +145,8 @@ category-button {
 
  /* Ajoutez des styles CSS supplémentaires selon vos besoins */
  .text-box {
-  width: 200px;
-  height: 50px;
+  width: 150px;
+  height: 20px;
   padding: 10px;
   margin: 10px;
   border: 1px solid #ccc;
@@ -268,4 +276,38 @@ footer {
 }
   
 
+.time-select, .number-select {
+  border: none;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: tomato;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.time-select select, .number-select input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  margin: 5px;
+}
+
+
+/* Style pour les conteneurs de sélection */
+.category-list > div {
+  display: flex; /* Utilise flexbox */
+  align-items: center; /* Alignement vertical des éléments */
+  margin-bottom: 10px; /* Espace entre chaque groupe label-sélecteur */
+}
+
+.category-list label {
+  margin-right: 10px; /* Espace entre le label et le sélecteur/input */
+}
+
+/* Ajustements pour les sélecteurs et inputs */
+.category-list select, 
+.category-list input[type="number"] {
+  width: 150px; /* Vous pouvez ajuster cette largeur selon vos besoins */
+}
 
