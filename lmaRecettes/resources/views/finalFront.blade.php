@@ -24,7 +24,7 @@
         <h1>Happy Recipes</h1>
     </article>
     <article>
-        <h2>Explorer une cuisine saine et écolo avec ce que vous avez sous la main<br> Transformer vos provisions en
+        <h2>Explorez une cuisine saine et écolo avec ce que vous avez sous la main<br> Transformez vos provisions en
             délices équilibrés et respectueux de l'environnement</h2>
     </article>
 
@@ -74,24 +74,14 @@
     </div>
 
 
-    {{-- <div class="number-select">
-                    <label for="numberOfPeople">Nombre de personnes :</label>
-                    <input type="number" id="numberOfPeople" name="numberOfPeople" value="4" style="width:30px">
-                </div>
-            </div>
-        </div> --}}
 
-
-
-    {{-- <div class="special-category">
-            <div class="counter-container">
-                <div class="special-category">
-                    <div class="counter-container"> --}}
-    <div class="category-list">
-        <button class="category-button" id="newIngredient"><strong>ajout
-                d'ingrédients</strong></button>
-        <textarea class="text-box" placeholder="Entrez un ingrédient"></textarea>
-        <button class="ajouter-button">Ajouter</button>
+    <div class="ingredient-addition-container">
+        <div class="category-list">
+            <button class="category-button" id="newIngredient">Ajout
+                d'ingrédients: </button>
+            <textarea class="text-box" placeholder="Entrez un ingrédient"></textarea>
+            <button class="ajouter-button">Ajouter</button>
+        </div>
     </div>
     {{-- </div>
                 </div>
