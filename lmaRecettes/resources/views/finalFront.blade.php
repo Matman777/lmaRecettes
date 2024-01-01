@@ -105,10 +105,11 @@
     </h4>
     <div id="recipe"></div>
 
-
-    <div id="loading-container">
-        <span id="loading-message"></span>
-        <div id="dots" class="dots-animation"></div>
+    <div id="loading-screen">
+        <div id="loading-container">
+            <span id="loading-message"></span>
+            <div id="dots" class="dots-animation"></div>
+        </div>
     </div>
 </div>
 

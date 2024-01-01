@@ -222,7 +222,7 @@ async function getRecipe() {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${"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"}`,
+                "Authorization": `Bearer ${"key"}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({

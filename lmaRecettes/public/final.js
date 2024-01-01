@@ -165,6 +165,7 @@ async function getRecipe() {
         // Afficher le message d'attente avec les points de suspension
         loadingContainer.style.display = 'flex';
         dotsElement.style.display = 'inline';
+        document.getElementById('loading-screen').style.display = 'flex';
 
         const response = await fetch(url, {
             method: "POST",
@@ -206,6 +207,7 @@ async function getRecipe() {
         // Cacher les points de suspension après la réponse
         loadingContainer.style.display = 'none';
         dotsElement.style.display = 'none';
+        document.getElementById('loading-screen').style.display = 'none';
     }
 }
 
