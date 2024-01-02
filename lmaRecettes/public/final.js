@@ -3,6 +3,28 @@ const ingredients = [];
 const loadingContainer = document.querySelector('#loading-container');
 const dotsElement = document.querySelector('#dots');
 
+const recipeImages = [
+    'cuisto1Modif2.png',
+    'cuisto1Modif2.png',
+    'cuisto3Modif.png',
+    'cuisto4Modif.png'
+];
+
+
+// Fonction pour choisir une image au hasard
+function getRandomImage() {
+    const randomIndex = Math.floor(Math.random() * recipeImages.length);
+    return recipeImages[randomIndex];
+}
+
+
+// Fonction pour mettre à jour l'image lors de la génération de la recette
+function updateRecipeImage() {
+    const imageUrl = getRandomImage();
+    const imageContainer = document.getElementById('recipe-image');
+    imageContainer.innerHTML = `<img src="${imageUrl}" alt="Image de la recette" style="width:100%;">`;
+}
+
 
 
 
@@ -18,14 +40,7 @@ function changeColor(clickedButton) {
     }
 }
 
-// Ajouter un ingrédient à la liste
-// function addIngredient(ingredientName) {
-//     if (!ingredients.includes(ingredientName)) {
-//         ingredients.push(ingredientName);
-//         console.log(ingredients);
-//     }
-//     updateRecipeDisplay();
-// }
+
 
 function addIngredient(ingredientName) {
     // Convertir le premier caractère en majuscule et le reste en minuscules
@@ -42,21 +57,7 @@ function addIngredient(ingredientName) {
 
 
 // Retirer un ingrédient de la liste
-// function removeIngredient(ingredientName) {
-//     const index = ingredients.indexOf(ingredientName);
-//     if (index !== -1) {
-//         ingredients.splice(index, 1);
-//     }
-//     updateRecipeDisplay();
-// }
 
-// function removeIngredient(ingredientName) {
-//     const index = ingredients.indexOf(ingredientName);
-//     if (index !== -1) {
-//         ingredients.splice(index, 1);
-//         updateRecipeDisplay(); // Mettre à jour la liste des ingrédients
-//     }
-// }
 
 function removeIngredient(ingredientName) {
     const index = ingredients.indexOf(ingredientName);
@@ -78,15 +79,6 @@ function removeIngredient(ingredientName) {
 
 
 
-// function updateRecipeDisplay() {
-//     const recipeElement = document.querySelector('#recipe');
-//     let ingredientsHtml = ingredients.map(ingredient =>
-//         `<span class="ingredient-item">${ingredient} <button class="delete-button" onclick="removeIngredient('${ingredient}')">X</button></span>`
-//     ).join(', ');
-//     recipeElement.innerHTML = ingredientsHtml;
-// }
-
-
 function updateRecipeDisplay() {
     const selectedIngredientsElement = document.querySelector('#selected-ingredients');
     let ingredientsHtml = ingredients.map(ingredient =>
@@ -98,6 +90,8 @@ function updateRecipeDisplay() {
         document.querySelector('#selected-ingredients').style.display = 'block';
     } else {
         document.querySelector('#selected-ingredients').style.display = 'none';
+        document.querySelector('#recipe').style.display = 'none'; // Masquer la div de la recette
+        document.querySelector('#recipe-image').style.display = 'none'; // Masquer l'image de la recette si nécessaire
     }
 }
 
@@ -146,6 +140,8 @@ async function updateRecipeContent(data) {
 
 
 document.querySelector('#recipe').innerHTML = formattedRecipe;
+document.querySelector('#recipe').style.display = 'block'; // Afficher la div de la recette
+document.querySelector('#recipe-image').style.display = 'block'; // Afficher l'image de la recette
 
 
     } else {
@@ -156,6 +152,7 @@ document.querySelector('#recipe').innerHTML = formattedRecipe;
     // Afficher la div de la recette
     document.querySelector('#recipe').style.display = 'block';
     
+    updateRecipeImage();
 }
 
 
@@ -255,6 +252,7 @@ async function getRecipe() {
         dotsElement.style.display = 'none';
         document.getElementById('loading-screen').style.display = 'none';
     }
+    updateRecipeImage();
 }
 
 
@@ -284,54 +282,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-    
-
 });
-
-
-
-// function changeColor(clickedButton) {
-//     clickedButton.classList.toggle('clicked');
-// }
-// document.addEventListener('DOMContentLoaded', function () {
-//     const counterElement = document.querySelector('.counter');
-//     const btnMinus = document.querySelector('.btn-minus');
-//     const btnPlus = document.querySelector('.btn-plus');
-  
-//     let counterValue = 0;
-  
-//     btnMinus.addEventListener('click', function () {
-//       counterValue = Math.max(0, counterValue - 1);
-//       counterElement.textContent = counterValue;
-//     });
-  
-//     btnPlus.addEventListener('click', function () {
-//       counterValue += 1;
-//       counterElement.textContent = counterValue;
-//     });
-//   });
-  
-  
-// document.querySelectorAll('.social-icons a').forEach(link => {
-//   link.addEventListener('click', () => {
-//     gtag('event', 'click', {
-//       'event_category': 'social',
-//       'event_label': link.href
-//     });
-//   });
-// });
-
-
-// var radioButtons = document.querySelectorAll('input[name="choix"]');
-
-
-// radioButtons.forEach(function(button) {
-//     button.addEventListener('change', function() {
-        
-//         genere-button .forEach(function(otherButton) {
-//             if (otherButton !== button) {
-//                 otherButton.checked = false;
-//             }
-//         });
-//     });
-// });

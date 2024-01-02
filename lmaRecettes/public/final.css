@@ -20,13 +20,57 @@ body {
   z-index: 1000; /* s'assurer qu'il est au-dessus des autres éléments */
 }
 
-#recipe {
+/* #recipe {
     background-color: rgb(205, 205, 241);
-    padding: 20px; /* Ajoutez un peu de padding pour une meilleure lisibilité */
-    border-radius: 10px; /* Optionnel : pour les coins arrondis */
+    padding: 20px; 
+    border-radius: 10px;
     margin-left: 10px;
     margin-right: 10px;
+} */
+
+
+#recipe-container {
+  position: relative;
+  margin: 0 auto; /* Centrer la div dans la page */
+  /* width: 100%; */
+  max-width: 1450px;
+  border-radius: 20px;
+  overflow: hidden;
+  /* padding: 20px; */
+  /* box-shadow: -10px 5px 5px gray; */
+  
+  
 }
+
+#recipe {
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  color: black; 
+  font-size: 1.2em;
+  padding: 20px; 
+  padding-left: 20px;
+  overflow: auto;
+}
+
+
+
+#recipe, #recipe-image {
+  flex: 1; /* Chaque élément occupe une part égale de l'espace */
+  padding: 20px; /* Ajuster le padding si nécessaire */
+}
+
+#recipe-image {
+  /* Styles pour l'image */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  
+}
+
+
+
 
 
       
@@ -80,12 +124,13 @@ header nav {
   justify-content: center;
   gap: 15px;
   margin-top: 40px;
-  
 }
+
 .category-list, .counter-container{
   display: flex;
   flex-direction: row;
   align-items: center;
+  
 }
 .category-button{
   padding: 10px 20px;
@@ -127,8 +172,9 @@ header nav {
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
-    background-color: rgb(205, 205, 241);
     border-radius: 5px;
+    font-size: 1.3em;
+    font-weight: bold;
 }
 
   
@@ -226,13 +272,16 @@ footer {
   bottom: 0;
   width: 100%;
   color: white;
+  
 }
 /* Ajoutez ces styles à votre fichier CSS */
 .social-icons {
   display: flex;
-  justify-content: flex-end; /* Ajustez selon vos préférences de mise en page */
-  align-items: center; /* Centre les icônes verticalement */
-  height: 100%; /* Ajuste la hauteur pour les centrer */
+    justify-content: flex-end; /* Alignez les icônes à l'extrémité droite */
+    align-items: center; /* Centre les icônes verticalement */
+    gap: 10px; /* Espace entre les icônes */
+    margin-right: 40px;
+    
 }
 
 .social-icons a {
@@ -244,6 +293,8 @@ footer {
   width: 30px; /* Ajustez selon vos préférences de taille */
   height: 30px;
   transform: scale(1.2); /* Effet de zoom au survol */
+  
+  
 }
 
 .social-icons img:hover {

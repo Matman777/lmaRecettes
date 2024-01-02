@@ -23,9 +23,13 @@
     <article>
         <h1>Happy Recipes</h1>
     </article>
-    <article>
+    {{-- <article>
         <h2>Explorez une cuisine saine et écolo avec ce que vous avez sous la main<br> Transformez vos provisions en
             délices équilibrés et respectueux de l'environnement</h2>
+    </article> --}}
+
+    <article>
+        <h2>Aucune idée de quoi cuisiner avec ce qu'on a dans les placards?</h2>
     </article>
 
 
@@ -97,7 +101,21 @@
     <div id="selected-ingredients"></div>
 
 
-    <div id="recipe"></div>
+    <div id="recipe-container">
+        <div id="recipe-image">
+            <!-- L'image de la recette sera affichée ici -->
+        </div>
+        <div id="recipe">
+            <!-- Votre contenu de recette ici -->
+        </div>
+    </div>
+
+
+
+
+
+
+
 
     <div id="loading-screen">
         <div id="loading-container">
