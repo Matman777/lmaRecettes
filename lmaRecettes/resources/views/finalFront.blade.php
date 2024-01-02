@@ -23,14 +23,11 @@
     <article>
         <h1>Happy Recipes</h1>
     </article>
-    {{-- <article>
-        <h2>Explorez une cuisine saine et écolo avec ce que vous avez sous la main<br> Transformez vos provisions en
-            délices équilibrés et respectueux de l'environnement</h2>
-    </article> --}}
-
     <article>
-        <h2>Aucune idée de quoi cuisiner avec ce qu'on a dans les placards?</h2>
+        <h2>Explorez une cuisine écolo avec ce que vous avez sous la main:<br> Sélectionnez,
+            générez et dégustez!</h2>
     </article>
+
 
 
     <div class="category-container">

@@ -33,7 +33,7 @@ body {
   position: relative;
   margin: 0 auto; /* Centrer la div dans la page */
   /* width: 100%; */
-  max-width: 1450px;
+  max-width: 1500px;
   border-radius: 20px;
   overflow: hidden;
   /* padding: 20px; */
@@ -102,21 +102,25 @@ header nav {
   article h2 {
     font-size: 1.3em;
     text-align: center;
-    color: white;
+    color: black;
     border: 1px solid black;
     border-radius: 10px;
-    box-shadow: -10px 5px 5px gray;
+    box-shadow: -15px 10px 5px gray;
     width: 52%;
     margin: 0 auto 50px;
-    background-color: rgb(110, 111, 147);
-    
-   
+    background-color: rgb(205, 205, 241);
   }
   
-  article h1 {
+  h1 {
+    background-image: url('fond_titre.jpg'); 
+    -webkit-background-clip: text;
+    background-size: cover;
+    background-clip: text;
+    color: transparent;
+    font-size: 60px; 
     text-align: center;
-    color: black;
-  }
+}
+
   
 .category-container {
   display: flex;
@@ -197,12 +201,6 @@ background-color: rgb(149, 149, 234);
 nav a:hover {
   color: blue;
 } 
-
-/* .special-category {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-} */
 
 
 .counter-box special-category{
