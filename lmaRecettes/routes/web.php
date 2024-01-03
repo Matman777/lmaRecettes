@@ -19,7 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', [IngredientController::class, 'index']);
+Route::get('/', [IngredientController::class, 'final']);
+
+Route::get('/final', [IngredientController::class, 'final']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
