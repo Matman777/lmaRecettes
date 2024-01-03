@@ -5,9 +5,8 @@ const dotsElement = document.querySelector('#dots');
 
 const recipeImages = [
     'cuisto1Modif2.png',
-    'cuisto1Modif2.png',
     'cuisto3Modif.png',
-    'cuisto4Modif.png'
+    'cuisto4Modif.png',
 ];
 
 

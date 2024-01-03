@@ -2,9 +2,12 @@ body {
     background-image: url('./fond_cuisine.avif');
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     margin: 0 auto;
     padding-bottom: 60px; /* Ajoutez une marge en bas égale à la hauteur du footer */
+    
 }
+
 
 #loading-screen {
   display: none; /* caché par défaut */
@@ -20,54 +23,57 @@ body {
   z-index: 1000; /* s'assurer qu'il est au-dessus des autres éléments */
 }
 
-/* #recipe {
-    background-color: rgb(205, 205, 241);
+#recipe {
+    background-color: rgb(245, 222, 179, 0.5);
     padding: 20px; 
     border-radius: 10px;
-    margin-left: 10px;
+    margin-left: 380px;
     margin-right: 10px;
-} */
+    width: 45%;
+    box-shadow: -15px 10px 5px gray;
+    
+}
+
+.preparation {
+  font-size: 1.1em;
+}
 
 
-#recipe-container {
+/* #recipe-container {
   position: relative;
-  margin: 0 auto; /* Centrer la div dans la page */
-  /* width: 100%; */
-  max-width: 1500px;
-  border-radius: 20px;
+  margin: 0 auto;
+  max-width: 1400px;
   overflow: hidden;
-  /* padding: 20px; */
-  /* box-shadow: -10px 5px 5px gray; */
-  
-  
+  width: auto;
 }
 
 #recipe {
   position: absolute;
   top: 0; 
   left: 0; 
-  width: 100%; 
+  width: 50%;
   color: black; 
   font-size: 1.2em;
   padding: 20px; 
   padding-left: 20px;
+  padding-bottom: 20px;
   overflow: auto;
 }
 
 
 
 #recipe, #recipe-image {
-  flex: 1; /* Chaque élément occupe une part égale de l'espace */
-  padding: 20px; /* Ajuster le padding si nécessaire */
+  flex: 1; 
+  padding: 20px; 
 }
 
 #recipe-image {
-  /* Styles pour l'image */
+  
   width: 100%;
   height: auto;
   object-fit: cover;
   
-}
+} */
 
 
 
@@ -106,7 +112,7 @@ header nav {
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: -15px 10px 5px gray;
-    width: 52%;
+    width: 40%;
     margin: 0 auto 50px;
     background-color: rgb(205, 205, 241);
   }
@@ -117,7 +123,7 @@ header nav {
     background-size: cover;
     background-clip: text;
     color: transparent;
-    font-size: 60px; 
+    font-size: 50px; 
     text-align: center;
 }
 
@@ -173,18 +179,22 @@ header nav {
 
   #selected-ingredients {
     padding: 10px;
+    margin-bottom: 10px;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 380px;
     margin-right: 10px;
     border-radius: 5px;
     font-size: 1.3em;
     font-weight: bold;
+    width: 45%;
+    background-color: rgb(245, 222, 179, 0.5);
+    box-shadow: -15px 10px 5px gray;
+    
 }
 
   
 
 .custom-button.clicked {
-/* Définit la couleur de fond du bouton après le clic */
 background-color: rgb(149, 149, 234);
 }
 
@@ -243,17 +253,17 @@ nav a:hover {
   border-radius: 10px;
   cursor: pointer;
   font-size: 1em;
-  background-color: rgb(94, 226, 94);
+  background-color: rgba(255, 217, 0, 0.582);
   width: 200px;
   text-align: center;
-  margin: 0 auto; /* Ajout de cette ligne pour centrer horizontalement */
+  margin: 0 auto; 
 }
 
 .ajouter-button {
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
-  background-color: rgb(94, 226, 94);
+  background-color: rgba(255, 217, 0, 0.582);
   color: black;
   cursor: pointer;
   font-size: 1em;
@@ -270,8 +280,9 @@ footer {
   bottom: 0;
   width: 100%;
   color: white;
-  
 }
+
+
 /* Ajoutez ces styles à votre fichier CSS */
 .social-icons {
   display: flex;
@@ -405,3 +416,4 @@ footer {
 #selected-ingredients, #recipe {
   display: none;
 }
+

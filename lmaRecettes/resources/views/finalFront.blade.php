@@ -80,7 +80,7 @@
         <div class="category-list">
             <button class="category-button" id="newIngredient">Ajout
                 d'ingrédients: </button>
-            <textarea class="text-box" placeholder="Entrez un ingrédient"></textarea>
+            <input class="text-box" placeholder="Entrez un ingrédient">
             <button class="ajouter-button">Ajouter</button>
         </div>
     </div>
@@ -98,19 +98,13 @@
     <div id="selected-ingredients"></div>
 
 
-    <div id="recipe-container">
-        <div id="recipe-image">
-            <!-- L'image de la recette sera affichée ici -->
-        </div>
-        <div id="recipe">
-            <!-- Votre contenu de recette ici -->
-        </div>
-    </div>
+    {{-- <div id="recipe-container">
+        <div id="recipe"></div>
+        <div id="recipe-image"></div>
+    </div> --}}
 
 
-
-
-
+    <div id="recipe"></div>
 
 
 
