@@ -86,8 +86,8 @@ class InfoController extends Controller
             ->get();
 
         // Récupérer les données pour le graphique horaire
-        $hourlyInfos = Info::select(DB::raw('DATE_FORMAT(heure_connexion, "%Y-%m-%d %H") as date_heure_connexion'), DB::raw('COUNT(id) as totalActions'))
-            ->groupBy(DB::raw('DATE_FORMAT(heure_connexion, "%Y-%m-%d %H")'), DB::raw('HOUR(heure_connexion)'))
+        $hourlyInfos = Info::select(DB::raw('DATE_FORMAT(heure_connexion, "%d-%m-%Y à %HH") as date_heure_connexion'), DB::raw('COUNT(id) as totalActions'))
+            ->groupBy(DB::raw('DATE_FORMAT(heure_connexion, "%d-%m-%Y à %HH")'), DB::raw('HOUR(heure_connexion)'))
             ->get();
 
         $userAgentData = Info::select('user_agent', DB::raw('COUNT(DISTINCT idUser) as totalActions'))

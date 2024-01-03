@@ -98,7 +98,7 @@
 
                 plugins: {
                     datalabels: {
-                        color: '#fff', // Couleur du texte
+                        color: '#fff',
                         formatter: (value, context) => {
                             // Afficher la valeur sur le graphique
                             return value;

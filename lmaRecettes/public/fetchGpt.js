@@ -52,7 +52,7 @@ const ingredients = [];
             fetch(url, {
                     method: "POST",
                     headers: {
-                        //"Authorization": `Bearer ${"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"}`,
+                        "Authorization": `Bearer ${"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"}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
