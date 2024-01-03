@@ -373,9 +373,14 @@ footer {
     /* Autres styles pour centrer et présenter la fenêtre modale */
 }
 
-.blur-element {
-    filter: blur(6px);
+/* .blur-element #main-content {
+  filter: blur(6px);
+} */
+
+.blur-element > *:not(#cookie-modal) {
+  filter: blur(6px);
 }
+
   
 
 .time-select, .number-select {

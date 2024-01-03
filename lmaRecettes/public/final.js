@@ -3,28 +3,6 @@ const ingredients = [];
 const loadingContainer = document.querySelector('#loading-container');
 const dotsElement = document.querySelector('#dots');
 
-const recipeImages = [
-    'cuisto1Modif2.png',
-    'cuisto3Modif.png',
-    'cuisto4Modif.png',
-];
-
-
-// Fonction pour choisir une image au hasard
-function getRandomImage() {
-    const randomIndex = Math.floor(Math.random() * recipeImages.length);
-    return recipeImages[randomIndex];
-}
-
-
-// Fonction pour mettre à jour l'image lors de la génération de la recette
-function updateRecipeImage() {
-    const imageUrl = getRandomImage();
-    const imageContainer = document.getElementById('recipe-image');
-    imageContainer.innerHTML = `<img src="${imageUrl}" alt="Image de la recette" style="width:100%;">`;
-}
-
-
 
 
 // Fonction pour changer la couleur des boutons au clic et gérer les ingrédients
@@ -54,10 +32,7 @@ function addIngredient(ingredientName) {
 
 
 
-
 // Retirer un ingrédient de la liste
-
-
 function removeIngredient(ingredientName) {
     const index = ingredients.indexOf(ingredientName);
     if (index !== -1) {
@@ -72,8 +47,6 @@ function removeIngredient(ingredientName) {
         });
     }
 }
-
-
 
 
 
@@ -93,8 +66,6 @@ function updateRecipeDisplay() {
         document.querySelector('#recipe-image').style.display = 'none'; // Masquer l'image de la recette si nécessaire
     }
 }
-
-
 
 
 
@@ -151,7 +122,7 @@ document.querySelector('#recipe-image').style.display = 'block'; // Afficher l'i
     // Afficher la div de la recette
     document.querySelector('#recipe').style.display = 'block';
     
-    updateRecipeImage();
+    
 }
 
 
@@ -237,7 +208,6 @@ async function getRecipe() {
         }
 
       
-
         // Formater et mettre à jour la div avec la recette
         updateRecipeContent(data);
 
@@ -251,9 +221,8 @@ async function getRecipe() {
         dotsElement.style.display = 'none';
         document.getElementById('loading-screen').style.display = 'none';
     }
-    updateRecipeImage();
+    
 }
-
 
 
 
