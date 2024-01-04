@@ -20,7 +20,6 @@ return new class extends Migration
             $table->timestamp('heure_deconnexion')->nullable();
             $table->string('tag')->nullable();
             $table->string('param2')->nullable();
-            //$table->integer('nombre_personnes');
             $table->timestamps();
         });
     }

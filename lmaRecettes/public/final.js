@@ -23,6 +23,8 @@ function addIngredient(ingredientName) {
     // Convertir le premier caractère en majuscule et le reste en minuscules
     const formattedIngredientName = ingredientName.charAt(0).toUpperCase() + ingredientName.slice(1).toLowerCase();
 
+    // enregistrerStats('AI', ingredientName);
+
     if (!ingredients.includes(formattedIngredientName)) {
         ingredients.push(formattedIngredientName);
         console.log(ingredients);
@@ -68,62 +70,48 @@ function updateRecipeDisplay() {
 }
 
 
+// Traitement de la réponse de l'Api avec gpt-3.5-turbo-instruct
+function updateRecipeContent(data) {
+    try {
 
-// Traitement de la réponse de l'API
-async function updateRecipeContent(data) {
-    console.log(data);
-    const recipe = data.choices[0].text;
-    console.log('Full Recipe:', recipe);
+        // Nettoyer la réponse JSON (enlever les virgules supplémentaires)
+        const cleanedJSON = data.text.replace(/,(\s*[\]}])/g, "$1");
+        // Convertir la réponse JSON en objet JavaScript
+        const recipeData = JSON.parse(data.text);
 
-    // Séparer la recette en sections (titre, ingrédients, préparation)
-    const sections = recipe.split('\n\n');
-    console.log('Sections:', sections);
+        // Extraire les données
+        const title = recipeData.titre;
+        const ingredients = recipeData.ingredients;
+        const preparationSteps = recipeData.preparation.map(step => step.replace(/^\d+\.\s*/, ''));
+        const prepTime = recipeData.tempsPreparation;
+        const servings = recipeData.nombrePersonnes;
 
-    if (sections.length >= 4) {
-        const title = sections[1].trim();
-        const ingredients = sections[2].split('\n').map(ingredient => ingredient.trim());
-        const preparationSection = sections.slice(3).join('\n\n'); // Combinez les sections restantes pour la préparation
-
-        const preparationSteps = preparationSection.split('\n').map(step => step.trim());
-
-        // Supprimer le numéro ajouté automatiquement
-        const formattedPreparationSteps = preparationSteps.map(step => {
-            const match = step.match(/^\d+\.\s(.*)/); // Vérifier s'il y a un numéro au début de l'étape
-            return match ? match[1] : step;
+        // Formatage de la sortie HTML
+        let formattedRecipe = `<h2>${title}</h2>\n`;
+        formattedRecipe += "<div class='ingredients'>\n<h3>Ingrédients :</h3>\n<ul>\n";
+        ingredients.forEach(ingredient => {
+            formattedRecipe += `<li>${ingredient}</li>\n`;
         });
+        formattedRecipe += "</ul>\n</div>\n";
+        formattedRecipe += "<div class='preparation'>\n<h3>Préparation :</h3>\n<ol>\n";
+        preparationSteps.forEach(step => {
+            formattedRecipe += `<li>${step}</li>\n`;
+        });
+        formattedRecipe += "</ol>\n</div>\n";
 
-        const formattedRecipe = `
-    <h2>${title}</h2>
-    <div class="ingredients">
-        <h3>Ingrédients :</h3>
-        <ul>
-            ${ingredients.slice(1).map(ingredient => `<li>${ingredient}</li>`).join('')}
-        </ul>
-    </div>
-    <div class="preparation">
-        <h3>Préparation :</h3>
-        <ol>
-            ${formattedPreparationSteps.slice(1).map(step => `<li>${step.replace(/^\d+\.\s*/, '')}</li>`).join('')}
-        </ol>
-    </div>
-`;
+        // Ajouter les informations supplémentaires
+        formattedRecipe += `<p>Temps de préparation : ${prepTime}</p>\n`;
+        formattedRecipe += `<p>Recette pour ${servings} personnes</p>`;
 
-
-document.querySelector('#recipe').innerHTML = formattedRecipe;
-document.querySelector('#recipe').style.display = 'block'; // Afficher la div de la recette
-document.querySelector('#recipe-image').style.display = 'block'; // Afficher l'image de la recette
-
-
-    } else {
-        console.error("Invalid recipe format");
+        // Affichage dans l'élément HTML approprié
+        document.querySelector('#recipe').innerHTML = formattedRecipe;
+        document.querySelector('#recipe').style.display = 'block';
+    } catch (error) {
+        console.error("Error parsing JSON:", error);
         document.querySelector('#recipe').innerHTML = "Une erreur s'est produite lors du formatage de la recette.";
     }
-
-    // Afficher la div de la recette
-    document.querySelector('#recipe').style.display = 'block';
-    
-    
 }
+
 
 
 
@@ -153,20 +141,27 @@ async function getRecipe() {
     const numberOfPeople = document.querySelector("input[name='numberOfPeople']").value;
 
     const prompt =
-        `Tu dois générer une recette.
-        La recette commencera par "Voici votre recette", avec le nom de la recette juste en dessous.
-        Elle inclura les ingrédients suivants: ${ingredients.join(', ')}.
-        Elle inclura un temps de préparation d'environ ${time} minutes.
-        Elle doit être prévue pour ${numberOfPeople} personnes.
-        Tu présenteras la recette sous le format suivant:
-        Le Titre de la recette, puis tu sautes une ligne.
-        Les Ingrédients sous forme de liste, puis tu sautes une ligne.
-        La Préparation, sous forme de liste numérotée.
-        Si l'un des ingrédients renseignés n'est en réalité pas un produit alimentaire 
-        (par exemple: de la mort aux rats, de l'eau de javel ou encore un chat), 
-        n'en prends pas compte et fais la recette en omettant tout élément illicite`;
+        `Tu dois générer une recette en format JSON.
+        La recette inclura les informations suivantes dans un format structuré : 
+        - Le titre de la recette.
+        - La liste des ingrédient. Pour chaque ingrédient, indique la quantité nécessaire pour réaliser la recette.
+        - Les étapes de préparation.
+        - Le temps de préparation approximatif.
+        - Le nombre de personnes pour lesquelles la recette est prévue.
+        Inclure les ingrédients suivants: ${ingredients.join(', ')}.
+        Temps de préparation estimé: ${time} minutes.
+        Prévue pour ${numberOfPeople} personnes.
+        Format JSON attendu:
+        {
+        "titre": "Nom de la recette",
+        "ingredients": ["X Ingrédient 1", "X Ingrédient 2", ...],
+        "preparation": ["Étape 1", "Étape 2", ...],
+        "tempsPreparation": "XX minutes",
+        "nombrePersonnes": X
+        }`;
 
-    const url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
+
+    const url = "https://api.openai.com/v1/engines/gpt-3.5-turbo-instruct/completions";
     const temperature = 0.7;
     const maxTokens = 650;
     const top_p = 0.9;
@@ -183,7 +178,7 @@ async function getRecipe() {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${""}`,
+                "Authorization": `Bearer ${"key"}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -209,7 +204,7 @@ async function getRecipe() {
 
       
         // Formater et mettre à jour la div avec la recette
-        updateRecipeContent(data);
+        updateRecipeContent(data.choices[0]);
 
     } catch (error) {
         console.error("Error:", error);

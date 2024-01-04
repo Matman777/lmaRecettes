@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InfoController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,10 @@ Route::get('/', function () {
 Route::get('/', [IngredientController::class, 'final']);
 
 Route::get('/final', [IngredientController::class, 'final']);
+
+Route::get('/dashboard', [InfoController::class, 'afficheGraphes']);
+
+Route::get('/enregistrer-stats/{tag}/{param2}', [InfoController::class, 'enregistrerStats']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
