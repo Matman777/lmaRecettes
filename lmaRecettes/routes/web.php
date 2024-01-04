@@ -21,6 +21,19 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/conditions', function () {
+    return view('conditions');
+});
+
+Route::get('/propos', function () {
+    return view('propos');
+});
+
 Route::get('/', [IngredientController::class, 'final']);
 
 Route::get('/api-key', [ApiController::class, 'getApiKey']);

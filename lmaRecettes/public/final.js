@@ -47,17 +47,18 @@ function addIngredient(ingredientName) {
 function removeIngredient(ingredientName) {
     const index = ingredients.indexOf(ingredientName);
     if (index !== -1) {
-        ingredients.splice(index, 1);
-        updateRecipeDisplay(); // Mettre à jour la liste des ingrédients
-
-        // Trouver le bouton correspondant et retirer la classe 'clicked'
+        // Trouver le bouton correspondant et retirer la classe 'clicked' avant de modifier la liste
         document.querySelectorAll('.custom-button').forEach(button => {
             if (button.textContent.trim() === ingredientName) {
                 button.classList.remove('clicked');
             }
         });
+
+        ingredients.splice(index, 1); // Mettre à jour la liste des ingrédients
+        updateRecipeDisplay(); // Mettre à jour l'affichage
     }
 }
+
 
 
 

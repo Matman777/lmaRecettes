@@ -312,7 +312,6 @@ a:hover {
 #cookie-modal {
     position: fixed; /* ou 'absolute' selon vos besoins */
     z-index: 1000; /* Assurez-vous que cela est supérieur à celui du content-wrapper */
-    /* Autres styles pour centrer et présenter la fenêtre modale */
 }
 
 .blur-element > *:not(#cookie-modal) {
