@@ -16,17 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
 Route::get('/', [IngredientController::class, 'final']);
 
-Route::get('/final', [IngredientController::class, 'final']);
-
-Route::get('/dashboard', [InfoController::class, 'afficheGraphes']);
-
 Route::get('/enregistrer-stats/{tag}/{param2}', [InfoController::class, 'enregistrerStats']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/dashboard', [InfoController::class, 'afficheGraphes']);
 });
 
 require __DIR__ . '/auth.php';

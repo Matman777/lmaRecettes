@@ -27,49 +27,9 @@ class InfoController extends Controller
         return response()->json(['message' => 'Statistiques enregistrées avec succès']);
     }
 
-    public function Graphe_ingredient()
-    {
-        $infos = Info::select('param2', DB::raw('COUNT(id) as totalActions'))
-            ->groupBy('param2')
-            ->orderByDesc('totalActions')
-            ->get();
-
-        return view("/graphe_ingredient", ["infos" => $infos]);
-    }
 
 
 
-    public function Graphe_user()
-    {
-        $infos = Info::select(DB::raw('DATE_FORMAT(heure_connexion, "%Y-%m-%d %H") as date_heure_connexion'), DB::raw('COUNT(id) as totalActions'))
-            ->groupBy(DB::raw('DATE_FORMAT(heure_connexion, "%Y-%m-%d %H")'), DB::raw('HOUR(heure_connexion)'))
-            ->get();
-
-        return view('graphe_user', ['infos' => $infos]);
-    }
-
-
-
-    public function graphe_state_journaliere()
-    {
-        $infos = Info::selectRaw("DATE(heure_connexion) as date_jour, COUNT(id) as totalActions")
-            ->groupBy('date_jour') // jour
-            ->orderBy('date_jour') // ranger par date
-            ->get();
-
-        return view('graphe_state_journaliere', ['infos' => $infos]);
-    }
-
-
-    public function graphe3()
-    {
-        $infos = Info::select('user_agent', DB::raw('COUNT(DISTINCT idUser) as totalActions'))
-            ->groupBy('user_agent')
-            ->orderByDesc('totalActions')
-            ->get();
-
-        return view('graphe3', ['infos' => $infos]);
-    }
 
     public function afficheGraphes()
     {

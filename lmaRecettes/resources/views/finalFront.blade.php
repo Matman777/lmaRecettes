@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="final.js" defer></script>
+    <script src="infosPage.js" defer></script>
     <link rel="stylesheet" href="./final.css">
     <link rel="icon" type="image/png" href="logo_happy_recipe.webp" />
+
+    <script>
+        var idUser = "<?php echo bin2hex(random_bytes(16)); ?>";
+    </script>
 
     <title>Happy Recipes</title>
 

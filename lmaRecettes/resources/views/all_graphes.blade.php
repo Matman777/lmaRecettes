@@ -59,121 +59,33 @@
         <canvas id="ingredientChart"></canvas>
 
 
-        <p>
-        <h3>Les avantages de ce graphe:</h3>
-        1- Compréhension des Préférences des Utilisateurs : Le graphe de clics sur les ingrédients permet de visualiser
-        les préférences des utilisateurs en temps réel. Cela offre des informations précieuses sur les ingrédients les
-        plus populaires et les combinaisons appréciées, ce qui peut orienter le développement de nouvelles recettes ou
-        la mise en avant de certaines options. <br><br>
 
-        2- Personnalisation de l'Expérience Utilisateur : En comprenant quels ingrédients suscitent le plus d'intérêt,
-        votre site peut être optimisé pour offrir une expérience utilisateur plus personnalisée. Vous pourriez suggérer
-        des recettes en fonction des ingrédients populaires, améliorant ainsi la pertinence pour chaque visiteur.
-        <br><br>
-
-        3- Optimisation du Contenu : Les données du graphe peuvent aider à optimiser le contenu du site en mettant en
-        avant les ingrédients les plus recherchés. Cela peut conduire à une meilleure rétention des utilisateurs et à
-        une augmentation du temps passé sur le site. <br><br>
-
-        4- Prise de Décision Informée : Pour les professionnels de la cuisine ou de la restauration, le graphe peut
-        fournir des informations précieuses sur les tendances du marché. Cela peut aider les chefs à ajuster leurs menus
-        en fonction des préférences actuelles des consommateurs. <br><br>
-
-        5- Suivi de la Popularité au Fil du Temps : Le graphe peut également être utilisé pour suivre la popularité des
-        ingrédients au fil du temps. Cela permet de repérer les tendances émergentes et d'anticiper les changements de
-        comportement des utilisateurs. <br><br>
-
-        6- Optimisation du Stock et des Approvisionnements : Si le site est lié à une entreprise de restauration ou à
-        une épicerie, les données de clics peuvent être utilisées pour optimiser les niveaux de stock et les
-        approvisionnements en fonction de la demande réelle des utilisateurs. <br><br>
-
-        7- Engagement Utilisateur : En mettant en avant le graphe de clics, vous montrez que le site est axé sur
-        l'expérience utilisateur en offrant des fonctionnalités interactives et en montrant que les choix des
-        utilisateurs sont valorisés. <br><br>
-
-        </p>
     </div>
 
-    <p>-----------------------------------------------------------------------------------------</p>
+    <p>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    </p>
 
     <div class="chart-container">
         <h2>Le nombre de clics sur la page chaque jour</h2>
         <canvas id="dailyChart"></canvas>
 
 
-        <p>
-        <h3>Les avantages de ce graphe:</h3>
 
-        1- Analyse des Tendances Hebdomadaires : Le graphe par jour permet d'analyser les tendances hebdomadaires en
-        termes de fréquentation du site. Cela peut être utile pour planifier des promotions, des mises à jour de contenu
-        ou d'autres événements en fonction des jours de la semaine où l'activité est la plus élevée. <br><br>
-
-        2- Planification de Contenu : En comprenant quels jours de la semaine voient le plus d'activité, vous pouvez
-        planifier la publication de contenu important pour maximiser son impact. Par exemple, réservez les nouvelles
-        recettes ou les articles phares pour les jours où la fréquentation est historiquement élevée. <br><br>
-
-        3- Optimisation des Campagnes Marketing : Si vous exécutez des campagnes marketing spécifiques à certains jours
-        de la semaine, le graphe peut aider à évaluer l'efficacité de ces campagnes en observant les variations du
-        trafic pendant et après les campagnes. <br><br>
-
-        4- Gestion des Stocks et Approvisionnements : Si votre site est lié à une entreprise de restauration ou de
-        commerce électronique, les données par jour peuvent aider à optimiser la gestion des stocks en fonction de la
-        demande quotidienne. <br><br>
-
-        5- Adaptation des Ressources Serveur : Si vous observez des pics d'activité à certains moments de la semaine,
-        vous pouvez ajuster la capacité du serveur pour répondre à ces pics et garantir une performance optimale.
-        <br><br>
-
-        6- Identification des Événements ou Tendances Particulières : Des variations inhabituelles dans le nombre de
-        clics peuvent indiquer des événements spéciaux, des campagnes virales, ou des tendances particulières qui
-        méritent une attention particulière. <br><br>
-
-        7- Planification des Opérations et du Personnel : Les données par jour peuvent aider à planifier les opérations
-        et le personnel en fonction des fluctuations de la demande tout au long de la semaine. <br><br>
-        </p>
     </div>
 
-    <p>-----------------------------------------------------------------------------------------</p>
+    <p>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    </p>
 
     <div class="chart-container">
         <h2>Nombre de clics par heure sur la page</h2>
         <canvas id="hourlyChart"></canvas>
 
 
-        <p>
-        <h3>Les avantages de ce graphe:</h3>
 
-        1- Identification des Périodes d'Activité : Le graphe par heure permet d'identifier les périodes de la journée
-        où l'activité sur le site est la plus élevée. Cela peut être utile pour planifier des mises à jour de contenu,
-        des promotions spéciales ou d'autres activités promotionnelles pendant les heures de pointe. <br><br>
-
-        2- Optimisation de la Planification de Contenu : En comprenant quand les utilisateurs sont les plus actifs, vous
-        pouvez planifier la publication de nouvelles recettes, articles ou autres contenus pour maximiser leur
-        visibilité et leur impact. <br><br>
-
-        3- Adaptation des Ressources Serveur : Si votre site génère un trafic significatif à certaines heures de la
-        journée, cela peut influencer la gestion des ressources serveur. Vous pourriez ajuster la capacité du serveur
-        pour optimiser la performance pendant les périodes de trafic intense. <br><br>
-
-        4- Analyse des Tendances Temporelles : Le graphe par heure permet de détecter des tendances temporelles dans les
-        préférences des utilisateurs. Certains ingrédients ou types de recettes pourraient être plus populaires à des
-        moments spécifiques de la journée, offrant ainsi des insights pour des recommandations plus ciblées. <br><br>
-
-        5- Mesure de l'Efficacité des Campagnes Marketing : Si vous lancez des campagnes marketing à des moments
-        spécifiques, le graphe peut aider à évaluer l'efficacité de ces campagnes en observant les fluctuations du
-        trafic pendant et après les campagnes. <br><br>
-
-        6- Amélioration de l'Engagement : En comprenant quand les utilisateurs sont les plus actifs, vous pouvez
-        optimiser les fonctionnalités interactives du site, les discussions en direct ou d'autres formes d'engagement
-        pour maximiser l'interaction utilisateur. <br><br>
-
-        7- Gestion du Personnel : Si le site est lié à une entreprise de restauration, les données par heure peuvent
-        aider à planifier les quarts de travail du personnel en fonction des périodes de demande maximale. <br><br>
-
-        </p>
     </div>
 
-    <p>-----------------------------------------------------------------------------------------</p>
+    <p>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    </p>
 
     <div class="chart-container">
         <h2>Nombre de connexions selon le navigateur</h2>
@@ -182,38 +94,7 @@
         </div>
 
 
-        <p>
-        <h3>Les avantages de ce graphe:</h3>
 
-        1- Compatibilité du Site : En comprenant quels navigateurs sont les plus utilisés par vos visiteurs, vous pouvez
-        optimiser la compatibilité de votre site avec ces navigateurs spécifiques. Cela garantit une expérience
-        utilisateur fluide pour la majorité de votre audience. <br><br>
-
-        2- Détection de Problèmes Techniques : Si un navigateur spécifique connaît un nombre élevé de connexions
-        échouées ou d'erreurs, cela pourrait indiquer des problèmes techniques liés à la compatibilité avec ce
-        navigateur. Ces données peuvent aider à résoudre rapidement les problèmes de compatibilité. <br><br>
-
-        3- Optimisation du Développement Web : En concentrant les efforts de développement web sur les navigateurs les
-        plus populaires, vous maximisez l'efficacité de votre équipe de développement. Cela peut conduire à des mises à
-        jour plus rapides et à une meilleure allocation des ressources. <br><br>
-
-        4- Suivi des Tendances de Navigation : Les tendances dans l'utilisation des navigateurs changent au fil du
-        temps. Votre graphe peut aider à identifier les navigateurs émergents ou en déclin, ce qui peut influencer les
-        choix de développement futurs. <br><br>
-
-        5- Personnalisation de l'Assistance Technique : Si votre site offre un support technique, connaître le
-        navigateur utilisé par un utilisateur peut aider à fournir une assistance plus précise en cas de problème
-        spécifique à ce navigateur. <br><br>
-
-        6- Évaluation de la Performance : En analysant les données de connexion par navigateur, vous pouvez évaluer la
-        performance du site sur différents navigateurs. Cela peut conduire à des optimisations spécifiques pour
-        améliorer la vitesse de chargement et la réactivité du site. <br><br>
-
-        7- Orientation des Campagnes Publicitaires : Si vous menez des campagnes publicitaires en ligne, connaître les
-        navigateurs préférés de votre audience peut aider à optimiser la diffusion des publicités pour maximiser
-        l'impact. <br><br>
-
-        </p>
     </div>
 
 

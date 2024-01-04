@@ -23,7 +23,8 @@ function addIngredient(ingredientName) {
     // Convertir le premier caractère en majuscule et le reste en minuscules
     const formattedIngredientName = ingredientName.charAt(0).toUpperCase() + ingredientName.slice(1).toLowerCase();
 
-    // enregistrerStats('AI', ingredientName);
+
+    enregistrerStats('AI', ingredientName);
 
     if (!ingredients.includes(formattedIngredientName)) {
         ingredients.push(formattedIngredientName);
@@ -145,6 +146,7 @@ async function getRecipe() {
         La recette inclura les informations suivantes dans un format structuré : 
         - Le titre de la recette.
         - La liste des ingrédient. Pour chaque ingrédient, indique la quantité nécessaire pour réaliser la recette.
+        - N'accepte pas d'ingrédients non alimentaire.
         - Les étapes de préparation.
         - Le temps de préparation approximatif.
         - Le nombre de personnes pour lesquelles la recette est prévue.
@@ -178,7 +180,7 @@ async function getRecipe() {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${"key"}`,
+                "Authorization": `Bearer ${""}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
