@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\ProfileController;
@@ -22,7 +23,11 @@ Route::get('/welcome', function () {
 
 Route::get('/', [IngredientController::class, 'final']);
 
+Route::get('/api-key', [ApiController::class, 'getApiKey']);
+
 Route::get('/enregistrer-stats/{tag}/{param2}', [InfoController::class, 'enregistrerStats']);
+
+
 
 
 Route::get('/dashboard', function () {

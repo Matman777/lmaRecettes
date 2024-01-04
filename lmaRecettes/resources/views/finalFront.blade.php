@@ -116,7 +116,7 @@
 </div>
 
 <footer>
-    <div>
+    <div class="liens">
         <a href="#">À propos</a>
         <a href="#">Conditions générales</a>
         <a>&copy; 2023 Tous droits réservés. HappyRecipes.org</a>

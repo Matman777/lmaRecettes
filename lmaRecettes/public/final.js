@@ -2,6 +2,14 @@
 const ingredients = [];
 const loadingContainer = document.querySelector('#loading-container');
 const dotsElement = document.querySelector('#dots');
+let apiKey = "";
+
+fetch('/api-key')
+    .then(response => response.json())
+    .then(data => {
+        apiKey = data.api_Key; // Stocker la clé API dans la variable globale
+    })
+    .catch(error => console.error('Erreur lors de la récupération de la clé API:', error));
 
 
 
@@ -116,6 +124,7 @@ function updateRecipeContent(data) {
 
 
 
+
 // Obtenir une recette de l'API OpenAI
 async function getRecipe() {
 
@@ -168,7 +177,7 @@ async function getRecipe() {
     const maxTokens = 650;
     const top_p = 0.9;
 
-    console.log("Envoi de l'invite à l'API:", prompt);
+    // console.log("Envoi de l'invite à l'API:", prompt);
 
     
     try {
@@ -177,10 +186,11 @@ async function getRecipe() {
         dotsElement.style.display = 'inline';
         document.getElementById('loading-screen').style.display = 'flex';
 
+
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${""}`,
+                "Authorization": `Bearer ${apiKey}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
