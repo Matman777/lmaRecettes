@@ -2,6 +2,14 @@
 const ingredients = [];
 const loadingContainer = document.querySelector('#loading-container');
 const dotsElement = document.querySelector('#dots');
+let apiKey = "";
+
+fetch('/api-key')
+    .then(response => response.json())
+    .then(data => {
+        apiKey = data.api_Key; // Stocker la clé API dans la variable globale
+    })
+    .catch(error => console.error('Erreur lors de la récupération de la clé API:', error));
 
 
 
@@ -23,7 +31,8 @@ function addIngredient(ingredientName) {
     // Convertir le premier caractère en majuscule et le reste en minuscules
     const formattedIngredientName = ingredientName.charAt(0).toUpperCase() + ingredientName.slice(1).toLowerCase();
 
-    // enregistrerStats('AI', ingredientName);
+
+    enregistrerStats('AI', ingredientName);
 
     if (!ingredients.includes(formattedIngredientName)) {
         ingredients.push(formattedIngredientName);
@@ -38,17 +47,18 @@ function addIngredient(ingredientName) {
 function removeIngredient(ingredientName) {
     const index = ingredients.indexOf(ingredientName);
     if (index !== -1) {
-        ingredients.splice(index, 1);
-        updateRecipeDisplay(); // Mettre à jour la liste des ingrédients
-
-        // Trouver le bouton correspondant et retirer la classe 'clicked'
+        // Trouver le bouton correspondant et retirer la classe 'clicked' avant de modifier la liste
         document.querySelectorAll('.custom-button').forEach(button => {
             if (button.textContent.trim() === ingredientName) {
                 button.classList.remove('clicked');
             }
         });
+
+        ingredients.splice(index, 1); // Mettre à jour la liste des ingrédients
+        updateRecipeDisplay(); // Mettre à jour l'affichage
     }
 }
+
 
 
 
@@ -115,6 +125,8 @@ function updateRecipeContent(data) {
 
 
 
+
+
 // Obtenir une recette de l'API OpenAI
 async function getRecipe() {
 
@@ -145,6 +157,7 @@ async function getRecipe() {
         La recette inclura les informations suivantes dans un format structuré : 
         - Le titre de la recette.
         - La liste des ingrédient. Pour chaque ingrédient, indique la quantité nécessaire pour réaliser la recette.
+        - N'accepte pas d'ingrédients non alimentaire.
         - Les étapes de préparation.
         - Le temps de préparation approximatif.
         - Le nombre de personnes pour lesquelles la recette est prévue.
@@ -166,7 +179,7 @@ async function getRecipe() {
     const maxTokens = 650;
     const top_p = 0.9;
 
-    console.log("Envoi de l'invite à l'API:", prompt);
+    // console.log("Envoi de l'invite à l'API:", prompt);
 
     
     try {
@@ -175,10 +188,11 @@ async function getRecipe() {
         dotsElement.style.display = 'inline';
         document.getElementById('loading-screen').style.display = 'flex';
 
+
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${"key"}`,
+                "Authorization": `Bearer ${apiKey}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
