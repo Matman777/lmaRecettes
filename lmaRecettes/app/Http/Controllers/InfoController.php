@@ -79,11 +79,13 @@ class InfoController extends Controller
             ->orderByDesc('totalActions')
             ->get();
 
-        // Récupérer les données pour le graphique quotidien
+        //Récupérer les données pour le graphique quotidien
         $dailyInfos = Info::selectRaw("DATE(heure_connexion) as date_jour, COUNT(id) as totalActions")
-            ->groupBy('date_jour') // jour
-            ->orderBy('date_jour') // ranger par date
+            ->groupBy('date_jour')
+            ->orderBy('date_jour')
             ->get();
+
+
 
         // Récupérer les données pour le graphique horaire
         $hourlyInfos = Info::select(DB::raw('DATE_FORMAT(heure_connexion, "%d-%m-%Y à %HH") as date_heure_connexion'), DB::raw('COUNT(id) as totalActions'))

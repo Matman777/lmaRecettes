@@ -36,7 +36,6 @@
             width: 100%;
             height: 2px;
             background-color: #000;
-            /* Couleur du soulignement */
         }
 
         .chart-container {
