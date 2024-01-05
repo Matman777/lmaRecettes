@@ -24,7 +24,7 @@
     </article>
     <div class="contact-container">
         <div class="category-list">
-            <h2>A PROPOS</h2>
+            <h2>Notre team</h2>
         </div>
         <div class="image">
             <img src="https://media.licdn.com/dms/image/D4D35AQEhubqU02GTdA/profile-framedphoto-shrink_400_400/0/1698222525244?e=1704819600&v=beta&t=Ux-3VP7vZuDyZhFfaGKNMp0oPIEX6Z1Vh7gkdPbwYLE"
@@ -45,7 +45,7 @@
         <div>
             <a href="propos">À propos</a>
             <a href="conditions">Conditions générales</a>
-            <a>&copy; 2023 Tous droits réservés. HappyRecipes.org</a>
+            <span>&copy; 2023 Tous droits réservés. HappyRecipes.org</span>
         </div>
     </footer>
 </body>

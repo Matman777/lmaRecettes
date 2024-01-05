@@ -121,7 +121,7 @@
         <div class="liens">
             <a href="propos">À propos</a>
             <a href="conditions">Conditions générales</a>
-            <a>&copy; 2023 Tous droits réservés. HappyRecipes.org</a>
+            <span>&copy; 2023 Tous droits réservés. HappyRecipes.org</span>
         </div>
     </footer>
 

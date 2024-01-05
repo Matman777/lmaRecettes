@@ -34,6 +34,10 @@ Route::get('/propos', function () {
     return view('propos');
 });
 
+
+Route::get('/recettes', [IngredientController::class, 'index']);
+
+
 Route::get('/', [IngredientController::class, 'final']);
 
 Route::get('/api-key', [ApiController::class, 'getApiKey']);

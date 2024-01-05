@@ -21,7 +21,7 @@
     </article>
     <div class="contact-container">
         <h2>Conditions générales</h2>
-        <h3>L'utilisation de notre site implique votre acceptation pleine et entière des conditions générales.<br>
+        <h3>
             Vous pouvez utiliser toutes les recettes diffusées sur le site pour votre usage privé : repas entre amis ou
             en
             famille.<br>
@@ -37,7 +37,7 @@
         <div class="liens">
             <a href="propos">À propos</a>
             <a href="conditions">Conditions générales</a>
-            <a>&copy; 2023 Tous droits réservés. HappyRecipes.org</a>
+            <span>&copy; 2023 Tous droits réservés. HappyRecipes.org</span>
         </div>
     </footer>
 </body>

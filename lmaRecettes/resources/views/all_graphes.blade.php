@@ -12,14 +12,6 @@
 
 
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-        }
-
         h2 {
             position: relative;
             display: inline-block;
@@ -367,7 +359,6 @@
             }
         });
     </script>
-
 </body>
 
 </html>

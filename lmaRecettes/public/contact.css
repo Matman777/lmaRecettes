@@ -5,7 +5,7 @@ body {
     background-attachment: fixed;
     margin: 0 auto;
     padding-bottom: 60px; 
-    
+    overflow: hidden;
 }
       
   header nav {
@@ -32,7 +32,75 @@ body {
     color: rgb(255, 217, 0);
   }
 
-  
+
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  height: auto; 
+  margin-top: -2.2%; 
+  margin-bottom: 10px; 
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+form {
+    width: 100%;
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba (255,255,255,0.13);
+    backdrop-filter: blur (10px);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+button[type="submit"]
+{
+    background-color: rgba (255,255,255,0.13);
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+}
+
+button[type="submit"]:hover
+{
+    background-color: rgba(255, 217, 0, 0.582);
+    color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+input[type=text], input[type="email"]
+{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    height: 30px;
+    display: inline-block;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+
+textarea[name=message]
+{
+ resize : none;
+ width: 100%;
+ height: 110px;
+ border-radius: 5px;
+}
+
+
   
   h1 {
     background-image: url('fond_titre.jpg'); 
