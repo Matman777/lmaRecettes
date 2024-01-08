@@ -290,7 +290,7 @@ a:hover {
 
 
   
-#cookie-modal {
+/* #cookie-modal {
     display: none;
     position: fixed;
     top: 50%;
@@ -301,12 +301,50 @@ a:hover {
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    
 }
 
 #cookie-modal button {
     margin-top: 10px;
     cursor: pointer;
+} */
+
+#cookie-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #f9f9f9; /* Couleur de fond légère */
+  padding: 20px;
+  border-radius: 8px; /* Bordures arrondies */
+  border: 1px solid #ddd; /* Bordure plus légère */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre portée */
+  z-index: 1000;
 }
+
+#cookie-modal button {
+  margin-top: 10px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 4px; 
+  padding: 10px 15px;
+  font-weight: bold;
+  transition: background-color 0.3s; 
+}
+
+#cookie-modal button.accept {
+  background-color: #8fe291; 
+}
+
+#cookie-modal button.reject {
+  background-color: #ef918a; 
+}
+
+#cookie-modal button:hover {
+  opacity: 0.8; 
+}
+
 
 
 #cookie-modal {
@@ -314,8 +352,19 @@ a:hover {
     z-index: 1000; /* Assurez-vous que cela est supérieur à celui du content-wrapper */
 }
 
-.blur-element > *:not(#cookie-modal) {
+/* .blur-element > *:not(#cookie-modal) {
   filter: blur(6px);
+} */
+
+#background-blur-overlay {
+  display: none; /* Caché par défaut */
+  position: fixed; /* Couvre l'ensemble de l'écran */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px); /* Flou pour l'arrière-plan */
+  z-index: 999; /* S'assure qu'il est juste en dessous de la fenêtre modale */
 }
 
   

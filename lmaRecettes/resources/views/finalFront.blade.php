@@ -127,53 +127,57 @@
 
 
     <div id="cookie-modal">
-        <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site. Nous stockerons les heures de
-            connexion, les ingrédients sélectionnés et les adresse IP. Acceptez-vous l'utilisation
-            des cookies?</p>
-        <button onclick="acceptCookies()">Oui</button>
-        <button onclick="rejectCookies()">Non</button>
+        <p><strong>Ce site web utilise des cookies</strong><br> <br>Les cookies nous permettent de personnaliser le
+            contenu, les annonces et
+            d'analyser notre trafic.
+            Acceptez-vous les cookies?
+        </p>
+        <button class="accept" onclick="acceptCookies()">Oui</button>
+        <button class="reject" onclick="rejectCookies()">Non</button>
     </div>
+    <div id = "background-blur-overlay">
+        < /div>
+            <script>
+                // Vérifier si le cookie "acceptedCookies" est défini
+                // if (!getCookie("acceptedCookies")) {
+                //     // Afficher la fenêtre modale si le cookie n'est pas défini
+                //     document.getElementById("cookie-modal").style.display = "block";
+                //     document.querySelectorAll(".container, .ingredients, #recipe, #loading-container").forEach(elem => {
+                //         elem.classList.add("blur-element");
+                //     });
+                // }
 
-    <script>
-        // Vérifier si le cookie "acceptedCookies" est défini
-        // if (!getCookie("acceptedCookies")) {
-        //     // Afficher la fenêtre modale si le cookie n'est pas défini
-        //     document.getElementById("cookie-modal").style.display = "block";
-        //     document.querySelectorAll(".container, .ingredients, #recipe, #loading-container").forEach(elem => {
-        //         elem.classList.add("blur-element");
-        //     });
-        // }
-
-        if (!getCookie("acceptedCookies")) {
-            document.getElementById("cookie-modal").style.display = "block";
-            document.body.classList.add("blur-element"); // Appliquer au body
-        }
-
-        function acceptCookies() {
-            document.cookie = "acceptedCookies=true; expires=" + new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000)
-                .toUTCString();
-            document.body.classList.remove("blur-element"); // Retirer du body
-            document.getElementById("cookie-modal").style.display = "none";
-        }
-
-        function rejectCookies() {
-            document.getElementById("cookie-modal").style.display = "none";
-            document.body.classList.remove("blur-element"); // Retirer du body
-        }
-
-
-        // Fonction pour récupérer la valeur d'un cookie par son nom
-        function getCookie(name) {
-            const cookies = document.cookie.split(";").map(cookie => cookie.trim());
-            for (const cookie of cookies) {
-                const [cookieName, cookieValue] = cookie.split("=");
-                if (cookieName === name) {
-                    return cookieValue;
+                if (!getCookie("acceptedCookies")) {
+                    document.getElementById("cookie-modal").style.display = "block";
+                    document.getElementById("background-blur-overlay").style.display = "block"; // Appliquer au body
                 }
-            }
-            return null;
-        }
-    </script>
+
+                function acceptCookies() {
+                    document.cookie = "acceptedCookies=true; expires=" + new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000)
+                        .toUTCString();
+                    document.getElementById("background-blur-overlay").style.display =
+                        "none"; // Retirer la classe de flou // Retirer du body
+                    document.getElementById("cookie-modal").style.display = "none";
+                }
+
+                function rejectCookies() {
+                    document.getElementById("cookie-modal").style.display = "none";
+                    document.getElementById("background-blur-overlay").style.display = "none"; // Retirer du body
+                }
+
+
+                // Fonction pour récupérer la valeur d'un cookie par son nom
+                function getCookie(name) {
+                    const cookies = document.cookie.split(";").map(cookie => cookie.trim());
+                    for (const cookie of cookies) {
+                        const [cookieName, cookieValue] = cookie.split("=");
+                        if (cookieName === name) {
+                            return cookieValue;
+                        }
+                    }
+                    return null;
+                }
+            </script>
     </div>
 </body>
 
